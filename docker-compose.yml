@@ -11,7 +11,7 @@ volumes:
 services:
 
   prometheus:
-    image: prom/prometheus:v2.17.1
+    image: prom/prometheus:v2.38.0
     container_name: prometheus
     volumes:
       - ./prometheus:/etc/prometheus
@@ -32,7 +32,7 @@ services:
       org.label-schema.group: "monitoring"
 
   alertmanager:
-    image: prom/alertmanager:v0.20.0
+    image: prom/alertmanager:v0.24.0
     container_name: alertmanager
     volumes:
       - ./alertmanager:/etc/alertmanager
@@ -48,7 +48,7 @@ services:
       org.label-schema.group: "monitoring"
 
   nodeexporter:
-    image: prom/node-exporter:v0.18.1
+    image: prom/node-exporter:v1.3.1
     container_name: nodeexporter
     volumes:
       - /proc:/host/proc:ro
@@ -85,7 +85,7 @@ services:
       org.label-schema.group: "monitoring"
 
   grafana:
-    image: grafana/grafana:6.7.2
+    image: grafana/grafana:9.1.2
     container_name: grafana
     volumes:
       - grafana_data:/var/lib/grafana
@@ -103,7 +103,7 @@ services:
       org.label-schema.group: "monitoring"
 
   pushgateway:
-    image: prom/pushgateway:v1.2.0
+    image: prom/pushgateway:v1.4.3
     container_name: pushgateway
     restart: unless-stopped
     expose:
