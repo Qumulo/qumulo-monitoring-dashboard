@@ -1,7 +1,7 @@
-Qumulo-Monitor
+Qumulo-Openmetrics-Demo
 ========
 
-A monitoring and alering solution for Qumulo Cluster using [Prometheus](https://prometheus.io/), [Grafana](http://grafana.org/), [cAdvisor](https://github.com/google/cadvisor),
+A monitoring and alering solution for Qumulo Cluster based on the openmetrics API using [Prometheus](https://prometheus.io/), [Grafana](http://grafana.org/), [cAdvisor](https://github.com/google/cadvisor),
 [NodeExporter](https://github.com/prometheus/node_exporter) and alerting with [AlertManager](https://github.com/prometheus/alertmanager).  
 
 This is a forked repository. So, you may want to visit the original repo at [Einsteinish/Docker-Compose-Prometheus-and-Grafana](https://github.com/Einsteinish/Docker-Compose-Prometheus-and-Grafana)
