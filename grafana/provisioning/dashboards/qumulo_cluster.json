@@ -566,7 +566,7 @@
       },
       "gridPos": {
         "h": 7,
-        "w": 20,
+        "w": 10,
         "x": 0,
         "y": 16
       },
@@ -659,10 +659,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
-        "w": 20,
-        "x": 0,
-        "y": 23
+        "h": 7,
+        "w": 10,
+        "x": 10,
+        "y": 16
       },
       "id": 4,
       "options": {
@@ -762,6 +762,6 @@
   "timezone": "",
   "title": "Qumulo Cluster Overview",
   "uid": "isJoSTGVz",
-  "version": 14,
+  "version": 16,
   "weekStart": ""
 }
