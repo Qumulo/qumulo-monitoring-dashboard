@@ -13,6 +13,13 @@ rule_files:
 
 # A scrape configuration containing exactly one endpoint to scrape.
 scrape_configs:
+  - job_name: 'qumulo-cluster'
+    scrape_interval: 20s
+    metrics_path: '/v2/metrics/endpoints/default/data'
+    scheme: https
+    static_configs:
+      - targets: ['gravytrain.eng.qumulo.com:8000']
+
   - job_name: 'nodeexporter'
     scrape_interval: 5s
     static_configs:
@@ -27,14 +34,7 @@ scrape_configs:
     scrape_interval: 10s
     static_configs:
       - targets: ['localhost:9090']
-
-  - job_name: 'gravytrain'
-    scrape_interval: 20s
-    metrics_path: '/v2/metrics/endpoints/default/data'
-    scheme: https
-    static_configs:
-      - targets: ['gravytrain.eng.qumulo.com:8000']
-
+  
 alerting:
   alertmanagers:
   - scheme: http

@@ -10,18 +10,18 @@ groups:
       summary: "Disk(s) on qumulo system in marked unhealthy"
       description: "{{ $labels.disk_type }} Disk in Node with ID {{ $labels.node_id }} and drive bay {{ $labels.drive_bay }} on qumulo cluster instance {{ $labels.instance }} is marked unhealthy."
 
-- alert: qumulo_no_nfs_connections
+  - alert: missing_nfs_calls
     expr: absent(qumulo_protocol_operations{protocol="nfs"})
-    for: 1m
+    for: 2m
     labels:
       severity: critical
     annotations:
       summary: "No NFS operations against qumulo cluster"
       description: "Missing NFS protocol operations on qumulo cluster instance {{ $labels.instance }}."
 
-- alert: qumulo_no_smb_connections
+  - alert: missing_smb_calls
     expr: absent(qumulo_protocol_operations{protocol="smb"})
-    for: 1m
+    for: 2m
     labels:
       severity: critical
     annotations:
