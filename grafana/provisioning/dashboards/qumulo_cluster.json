@@ -24,7 +24,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 6,
+  "id": 7,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -130,7 +130,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "builder",
-          "expr": "qumulo_fs_directory_used_bytes",
+          "expr": "qumulo_fs_directory_used_bytes{job=~\"$cluster\"}",
           "legendFormat": "{{usage_type}}",
           "range": true,
           "refId": "A"
@@ -140,16 +140,8 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
-          "hide": false,
-          "refId": "B"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
-          },
           "editorMode": "builder",
-          "expr": "qumulo_fs_free_bytes",
+          "expr": "qumulo_fs_free_bytes{job=~\"$cluster\"}",
           "hide": false,
           "legendFormat": "free",
           "range": true,
@@ -242,7 +234,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "builder",
-          "expr": "qumulo_protocol_client_connections - qumulo_protocol_client_disconnections",
+          "expr": "qumulo_protocol_client_connections_total{job=\"$cluster\"} - qumulo_protocol_client_disconnections_total{job=\"$cluster\"}",
           "legendFormat": "{{protocol}}",
           "range": true,
           "refId": "A"
@@ -309,7 +301,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "builder",
-          "expr": "qumulo_fs_directory_tree_entries",
+          "expr": "qumulo_fs_directory_tree_entries{job=~\"$cluster\"}",
           "legendFormat": "{{entry_type}}",
           "range": true,
           "refId": "A"
@@ -402,7 +394,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "builder",
-          "expr": "sum by(io_type) (rate(qumulo_protocol_bytes[1m]))",
+          "expr": "sum by(io_type) (rate(qumulo_protocol_operation_bytes_total{job=\"$cluster\"}[1m]))",
           "legendFormat": "{{io_type}}",
           "range": true,
           "refId": "A"
@@ -494,10 +486,22 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "builder",
-          "expr": "sum(rate(qumulo_protocol_operations[$__rate_interval]))",
-          "legendFormat": "IOPS",
+          "expr": "sum(rate(qumulo_protocol_operations_total{job=\"$cluster\", io_type=\"read\"}[$__rate_interval]))",
+          "legendFormat": "read",
           "range": true,
           "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "builder",
+          "expr": "sum(rate(qumulo_protocol_operations_total{job=\"$cluster\", io_type=\"write\"}[$__rate_interval]))",
+          "hide": false,
+          "legendFormat": "write",
+          "range": true,
+          "refId": "B"
         }
       ],
       "title": "IOPS",
@@ -586,7 +590,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "builder",
-          "expr": "rate(qumulo_protocol_operations{op_name=~\"$busy_ops\"}[$__rate_interval])",
+          "expr": "rate(qumulo_protocol_operations_total{op_name=~\"$busy_ops\", job=\"$cluster\"}[$__rate_interval])",
           "legendFormat": "{{op_name}}",
           "range": true,
           "refId": "A"
@@ -680,7 +684,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "builder",
-          "expr": "rate(qumulo_protocol_latency_seconds_sum{op_name=~\"$busy_ops\"}[$__rate_interval]) / rate(qumulo_protocol_latency_seconds_count{op_name=~\"$busy_ops\"}[$__rate_interval])",
+          "expr": "rate(qumulo_protocol_operation_latency_seconds_sum{op_name=~\"$busy_ops\", job=\"$cluster\"}[$__rate_interval]) / rate(qumulo_protocol_operation_latency_seconds_count{op_name=~\"$busy_ops\", job=\"$cluster\"}[$__rate_interval])",
           "hide": false,
           "legendFormat": "{{op_name}}",
           "range": true,
@@ -698,18 +702,26 @@
     "list": [
       {
         "current": {
-          "selected": false,
-          "text": "All",
-          "value": "$__all"
+          "selected": true,
+          "text": [
+            "All"
+          ],
+          "value": [
+            "$__all"
+          ]
         },
-        "definition": "query_result(topk(10, avg_over_time(qumulo_protocol_operations[${__range_s}s])))",
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
+        "definition": "query_result(topk(10, avg_over_time(qumulo_protocol_operations_total[${__range_s}s])))",
         "hide": 2,
         "includeAll": true,
         "multi": true,
         "name": "busy_ops",
         "options": [],
         "query": {
-          "query": "query_result(topk(10, avg_over_time(qumulo_protocol_operations[${__range_s}s])))",
+          "query": "query_result(topk(10, avg_over_time(qumulo_protocol_operations_total[${__range_s}s])))",
           "refId": "StandardVariableQuery"
         },
         "refresh": 1,
@@ -717,17 +729,39 @@
         "skipUrlSync": false,
         "sort": 0,
         "type": "query"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "qumulo-cluster",
+          "value": "qumulo-cluster"
+        },
+        "hide": 0,
+        "includeAll": false,
+        "multi": false,
+        "name": "cluster",
+        "options": [
+          {
+            "selected": true,
+            "text": "qumulo-cluster",
+            "value": "qumulo-cluster"
+          }
+        ],
+        "query": "qumulo-cluster",
+        "queryValue": "",
+        "skipUrlSync": false,
+        "type": "custom"
       }
     ]
   },
   "time": {
-    "from": "now-6h",
+    "from": "now-3h",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "Qumulo Cluster Overview",
   "uid": "isJoSTGVz",
-  "version": 9,
+  "version": 14,
   "weekStart": ""
 }
