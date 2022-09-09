@@ -33,6 +33,7 @@
         "type": "prometheus",
         "uid": "PBFA97CFB590B2093"
       },
+      "description": "",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -52,28 +53,13 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "free"
+              "options": "data"
             },
             "properties": [
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "snapshot"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "orange",
+                  "fixedColor": "blue",
                   "mode": "fixed"
                 }
               }
@@ -88,7 +74,22 @@
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "super-light-yellow",
+                  "fixedColor": "#cecbbb",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "snapshot"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "yellow",
                   "mode": "fixed"
                 }
               }
@@ -103,7 +104,12 @@
         "y": 0
       },
       "id": 14,
+      "links": [],
+      "maxDataPoints": 3,
       "options": {
+        "displayLabels": [
+          "percent"
+        ],
         "legend": {
           "displayMode": "list",
           "placement": "bottom",
@@ -122,7 +128,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "9.1.2",
+      "pluginVersion": "7.3.4",
       "targets": [
         {
           "datasource": {
@@ -130,7 +136,116 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "builder",
-          "expr": "qumulo_fs_directory_used_bytes{job=~\"$cluster\"}",
+          "exemplar": true,
+          "expr": "qumulo_fs_free_bytes{instance=~\"$cluster\"}",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "free",
+          "range": true,
+          "refId": "D"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "builder",
+          "exemplar": true,
+          "expr": "qumulo_fs_directory_used_bytes{instance=~\"$cluster\"}",
+          "interval": "",
+          "legendFormat": "{{usage_type}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Capacity",
+      "type": "piechart"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "bytes"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 7,
+        "x": 5,
+        "y": 0
+      },
+      "id": 22,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "builder",
+          "expr": "qumulo_fs_directory_used_bytes{instance=~\"$cluster\"}",
           "legendFormat": "{{usage_type}}",
           "range": true,
           "refId": "A"
@@ -141,15 +256,15 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "builder",
-          "expr": "qumulo_fs_free_bytes{job=~\"$cluster\"}",
+          "expr": "qumulo_fs_free_bytes{instance=~\"$cluster\"}",
           "hide": false,
           "legendFormat": "free",
           "range": true,
-          "refId": "C"
+          "refId": "B"
         }
       ],
-      "title": "Cluster Usage",
-      "type": "piechart"
+      "title": "Capacity Trends",
+      "type": "timeseries"
     },
     {
       "datasource": {
@@ -210,8 +325,8 @@
       },
       "gridPos": {
         "h": 8,
-        "w": 10,
-        "x": 5,
+        "w": 6,
+        "x": 12,
         "y": 0
       },
       "id": 16,
@@ -234,7 +349,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "builder",
-          "expr": "qumulo_protocol_client_connections_total{job=\"$cluster\"} - qumulo_protocol_client_disconnections_total{job=\"$cluster\"}",
+          "expr": "qumulo_protocol_client_connections_total{instance=~\"$cluster\"} - qumulo_protocol_client_disconnections_total{instance=~\"$cluster\"}",
           "legendFormat": "{{protocol}}",
           "range": true,
           "refId": "A"
@@ -268,7 +383,7 @@
       "gridPos": {
         "h": 8,
         "w": 5,
-        "x": 15,
+        "x": 18,
         "y": 0
       },
       "id": 8,
@@ -301,7 +416,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "builder",
-          "expr": "qumulo_fs_directory_tree_entries{job=~\"$cluster\"}",
+          "expr": "qumulo_fs_directory_tree_entries{instance=~\"$cluster\"}",
           "legendFormat": "{{entry_type}}",
           "range": true,
           "refId": "A"
@@ -369,8 +484,8 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
-        "w": 10,
+        "h": 7,
+        "w": 12,
         "x": 0,
         "y": 8
       },
@@ -394,7 +509,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "builder",
-          "expr": "sum by(io_type) (rate(qumulo_protocol_operation_bytes_total{job=\"$cluster\"}[1m]))",
+          "expr": "sum by(io_type) (rate(qumulo_protocol_operation_bytes_total{instance=~\"$cluster\"}[1m]))",
           "legendFormat": "{{io_type}}",
           "range": true,
           "refId": "A"
@@ -461,9 +576,9 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
-        "w": 10,
-        "x": 10,
+        "h": 7,
+        "w": 11,
+        "x": 12,
         "y": 8
       },
       "id": 12,
@@ -486,7 +601,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "builder",
-          "expr": "sum(rate(qumulo_protocol_operations_total{job=\"$cluster\", io_type=\"read\"}[$__rate_interval]))",
+          "expr": "sum(rate(qumulo_protocol_operations_total{instance=~\"$cluster\", io_type=\"read\"}[$__rate_interval]))",
           "legendFormat": "read",
           "range": true,
           "refId": "A"
@@ -497,7 +612,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "builder",
-          "expr": "sum(rate(qumulo_protocol_operations_total{job=\"$cluster\", io_type=\"write\"}[$__rate_interval]))",
+          "expr": "sum(rate(qumulo_protocol_operations_total{instance=~\"$cluster\", io_type=\"write\"}[$__rate_interval]))",
           "hide": false,
           "legendFormat": "write",
           "range": true,
@@ -565,10 +680,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 7,
-        "w": 10,
+        "h": 6,
+        "w": 12,
         "x": 0,
-        "y": 16
+        "y": 15
       },
       "id": 6,
       "options": {
@@ -590,7 +705,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "builder",
-          "expr": "rate(qumulo_protocol_operations_total{op_name=~\"$busy_ops\", job=\"$cluster\"}[$__rate_interval])",
+          "expr": "rate(qumulo_protocol_operations_total{op_name=~\"$busy_ops\", instance=~\"$cluster\"}[$__rate_interval])",
           "legendFormat": "{{op_name}}",
           "range": true,
           "refId": "A"
@@ -659,10 +774,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 7,
-        "w": 10,
-        "x": 10,
-        "y": 16
+        "h": 6,
+        "w": 11,
+        "x": 12,
+        "y": 15
       },
       "id": 4,
       "options": {
@@ -684,7 +799,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "builder",
-          "expr": "rate(qumulo_protocol_operation_latency_seconds_sum{op_name=~\"$busy_ops\", job=\"$cluster\"}[$__rate_interval]) / rate(qumulo_protocol_operation_latency_seconds_count{op_name=~\"$busy_ops\", job=\"$cluster\"}[$__rate_interval])",
+          "expr": "rate(qumulo_protocol_operation_latency_seconds_sum{op_name=~\"$busy_ops\", instance=\"$cluster\"}[$__rate_interval]) / rate(qumulo_protocol_operation_latency_seconds_count{op_name=~\"$busy_ops\", instance=\"$cluster\"}[$__rate_interval])",
           "hide": false,
           "legendFormat": "{{op_name}}",
           "range": true,
@@ -692,6 +807,192 @@
         }
       ],
       "title": "Top Protocol Ops Latency",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "options": {
+                "0": {
+                  "color": "semi-dark-green",
+                  "index": 0,
+                  "text": "OK"
+                },
+                "1": {
+                  "color": "dark-red",
+                  "index": 1,
+                  "text": "ERROR"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "super-light-green"
+              },
+              {
+                "color": "#EAB839",
+                "value": 0
+              }
+            ]
+          },
+          "unit": "string"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 23,
+        "x": 0,
+        "y": 21
+      },
+      "id": 20,
+      "maxPerRow": 12,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {
+          "titleSize": 20,
+          "valueSize": 20
+        },
+        "textMode": "name"
+      },
+      "pluginVersion": "8.1.2",
+      "repeat": "Cluster",
+      "repeatDirection": "h",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "builder",
+          "exemplar": true,
+          "expr": "qumulo_quorum_node_is_offline{instance=~\"$cluster\"}",
+          "instant": false,
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "Node - {{node_id}}",
+          "refId": "A"
+        }
+      ],
+      "title": "Node Statuses",
+      "transparent": true,
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "s"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 23,
+        "x": 0,
+        "y": 24
+      },
+      "id": 24,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "builder",
+          "expr": "rate(qumulo_disk_operation_latency_seconds_sum{instance=~\"$cluster\"}[$__rate_interval]) / rate(qumulo_disk_operation_latency_seconds_count{instance=~\"$cluster\"}[$__rate_interval])",
+          "legendFormat": "Node{{node_id}}_{{disk_type}}_bay{{drive_bay}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Disk Latencies",
       "type": "timeseries"
     }
   ],
@@ -732,36 +1033,36 @@
       },
       {
         "current": {
-          "selected": false,
-          "text": "qumulo-cluster",
-          "value": "qumulo-cluster"
+          "selected": true,
+          "text": "gravytrain.eng.qumulo.com:8000",
+          "value": "gravytrain.eng.qumulo.com:8000"
         },
+        "definition": "qumulo_quorum_node_is_offline",
         "hide": 0,
         "includeAll": false,
         "multi": false,
         "name": "cluster",
-        "options": [
-          {
-            "selected": true,
-            "text": "qumulo-cluster",
-            "value": "qumulo-cluster"
-          }
-        ],
-        "query": "qumulo-cluster",
-        "queryValue": "",
+        "options": [],
+        "query": {
+          "query": "qumulo_quorum_node_is_offline",
+          "refId": "StandardVariableQuery"
+        },
+        "refresh": 1,
+        "regex": ".*instance=\"(.*?)\".*",
         "skipUrlSync": false,
-        "type": "custom"
+        "sort": 0,
+        "type": "query"
       }
     ]
   },
   "time": {
-    "from": "now-3h",
+    "from": "now-30m",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "Qumulo Cluster Overview",
   "uid": "isJoSTGVz",
-  "version": 16,
+  "version": 22,
   "weekStart": ""
 }
