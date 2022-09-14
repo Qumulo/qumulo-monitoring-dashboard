@@ -4,7 +4,7 @@ Qumulo-Openmetrics-Demo
 A monitoring and alering solution for Qumulo Cluster based on the openmetrics API using [Prometheus](https://prometheus.io/), [Grafana](http://grafana.org/), [cAdvisor](https://github.com/google/cadvisor),
 [NodeExporter](https://github.com/prometheus/node_exporter) and alerting with [AlertManager](https://github.com/prometheus/alertmanager).  
 
-This is a forked repository. So, you may want to visit the original repo at [Einsteinish/Docker-Compose-Prometheus-and-Grafana](https://github.com/Einsteinish/Docker-Compose-Prometheus-and-Grafana)
+This is a forked repository. So, you may want to visit the original repo at [stefanprodan/dockprom](https://github.com/stefanprodan/dockprom)
 
 ## Install
 
@@ -13,14 +13,16 @@ This is a forked repository. So, you may want to visit the original repo at [Ein
 ```
 ADMIN_USER=admin  
 ADMIN_PASSWORD=admin
+ADMIN_PASSWORD_HASH=JDJhJDE0JE91S1FrN0Z0VEsyWmhrQVpON1VzdHVLSDkyWHdsN0xNbEZYdnNIZm1pb2d1blg4Y09mL0ZP
+
 ```
 
 ### Clone this repository on your Docker host, cd into ravi-test directory and run compose up:
 
 ```
-git clone https://github.com/Qumulo/ravi-test.git
+git clone https://github.com/Qumulo/openmetrics-demo.git
 
-# update the cluster dns and port in https://github.com/Qumulo/ravi-test/blob/master/prometheus/prometheus.yml#L21-L21
+# update the cluster dns and port in https://github.com/Qumulo/openmetrics-demo/blob/master/prometheus/prometheus.yml#L21-L21
 
 docker-compose up -d
 ```

@@ -18,7 +18,7 @@ scrape_configs:
     metrics_path: '/v2/metrics/endpoints/default/data'
     scheme: https
     static_configs:
-      - targets: ['gravytrain.eng.qumulo.com:8000']
+      - targets: ['<cluster api endpoint>']
 
   - job_name: 'nodeexporter'
     scrape_interval: 5s

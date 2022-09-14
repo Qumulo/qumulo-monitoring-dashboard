@@ -24,7 +24,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 7,
+  "id": 4,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -997,6 +997,7 @@
       "type": "timeseries"
     }
   ],
+  "refresh": "10s",
   "schemaVersion": 37,
   "style": "dark",
   "tags": [],
@@ -1068,6 +1069,6 @@
   "timezone": "",
   "title": "Qumulo Cluster Overview",
   "uid": "isJoSTGVz",
-  "version": 24,
+  "version": 2,
   "weekStart": ""
 }
