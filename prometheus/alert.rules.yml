@@ -2,7 +2,7 @@ groups:
 - name: qumulo
   rules:
   - alert: qumulo_disk_unhealthy
-    expr: qumulo_disk_is_unhealthy
+    expr: qumulo_disk_is_unhealthy == 1
     for: 60s
     labels:
       severity: critical
