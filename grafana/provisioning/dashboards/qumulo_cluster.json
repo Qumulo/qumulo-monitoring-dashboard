@@ -24,7 +24,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 4,
+  "id": 7,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -940,198 +940,6 @@
               "mode": "none"
             },
             "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "s"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 11,
-        "x": 0,
-        "y": 24
-      },
-      "id": 24,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": false
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
-          },
-          "editorMode": "builder",
-          "expr": "rate(qumulo_disk_operation_latency_seconds_sum{instance=~\"$cluster\"}[$__rate_interval]) / rate(qumulo_disk_operation_latency_seconds_count{instance=~\"$cluster\"}[$__rate_interval])",
-          "legendFormat": "Node{{node_id}}_{{disk_type}}_bay{{drive_bay}}",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "Disk Latencies",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "area"
-            }
-          },
-          "mappings": [],
-          "max": 90,
-          "min": 35,
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "orange",
-                "value": 75
-              },
-              {
-                "color": "red",
-                "value": 85
-              }
-            ]
-          },
-          "unit": "celsius"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 11,
-        "x": 11,
-        "y": 24
-      },
-      "id": 31,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
-          },
-          "editorMode": "builder",
-          "expr": "qumulo_cpu_temperature_celsius{instance=\"$cluster\"}",
-          "legendFormat": "cpu{{cpu}}",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "CPU Temperature",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
               "mode": "line"
             }
           },
@@ -1157,7 +965,7 @@
         "h": 7,
         "w": 8,
         "x": 0,
-        "y": 32
+        "y": 24
       },
       "id": 27,
       "options": {
@@ -1275,7 +1083,7 @@
         "h": 7,
         "w": 7,
         "x": 8,
-        "y": 32
+        "y": 24
       },
       "id": 26,
       "options": {
@@ -1369,7 +1177,7 @@
         "h": 7,
         "w": 7,
         "x": 15,
-        "y": 32
+        "y": 24
       },
       "id": 29,
       "options": {
@@ -1399,198 +1207,6 @@
       ],
       "title": "LDAP Request Latency",
       "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
-      },
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [
-            {
-              "options": {
-                "0": {
-                  "color": "semi-dark-green",
-                  "index": 0,
-                  "text": "OK"
-                }
-              },
-              "type": "value"
-            },
-            {
-              "options": {
-                "from": 1,
-                "result": {
-                  "color": "dark-red",
-                  "index": 1,
-                  "text": "ERROR"
-                },
-                "to": 9999999
-              },
-              "type": "range"
-            }
-          ],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "super-light-green",
-                "value": null
-              },
-              {
-                "color": "#EAB839",
-                "value": 0
-              }
-            ]
-          },
-          "unit": "string"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 6,
-        "w": 3,
-        "x": 0,
-        "y": 39
-      },
-      "id": 25,
-      "maxPerRow": 12,
-      "options": {
-        "colorMode": "background",
-        "graphMode": "none",
-        "justifyMode": "center",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "text": {
-          "titleSize": 20,
-          "valueSize": 20
-        },
-        "textMode": "name"
-      },
-      "pluginVersion": "9.1.2",
-      "repeatDirection": "h",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
-          },
-          "editorMode": "code",
-          "exemplar": true,
-          "expr": "sum(qumulo_time_is_not_synchronizing{instance=~\"$cluster\"})",
-          "instant": false,
-          "interval": "",
-          "intervalFactor": 1,
-          "legendFormat": "Time Synchronizing",
-          "refId": "A"
-        }
-      ],
-      "transparent": true,
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
-      },
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [
-            {
-              "options": {
-                "0": {
-                  "color": "semi-dark-green",
-                  "index": 0,
-                  "text": "OK"
-                },
-                "1": {
-                  "color": "dark-red",
-                  "index": 1,
-                  "text": "ERROR"
-                }
-              },
-              "type": "value"
-            }
-          ],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "super-light-green",
-                "value": null
-              },
-              {
-                "color": "#EAB839",
-                "value": 0
-              }
-            ]
-          },
-          "unit": "string"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 6,
-        "w": 19,
-        "x": 3,
-        "y": 39
-      },
-      "id": 28,
-      "maxPerRow": 12,
-      "options": {
-        "colorMode": "background",
-        "graphMode": "none",
-        "justifyMode": "center",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "text": {
-          "titleSize": 20,
-          "valueSize": 20
-        },
-        "textMode": "name"
-      },
-      "pluginVersion": "9.1.2",
-      "repeatDirection": "h",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
-          },
-          "editorMode": "builder",
-          "exemplar": true,
-          "expr": "qumulo_time_is_not_synchronizing{instance=~\"$cluster\"}",
-          "instant": false,
-          "interval": "",
-          "intervalFactor": 1,
-          "legendFormat": "Node - {{node_id}}",
-          "refId": "A"
-        }
-      ],
-      "title": "Time Synchronizing Status",
-      "transparent": true,
-      "type": "stat"
     }
   ],
   "refresh": "5s",
@@ -1632,8 +1248,8 @@
       {
         "current": {
           "selected": false,
-          "text": "df55.eng.qumulo.com:8000",
-          "value": "df55.eng.qumulo.com:8000"
+          "text": "gravytrain.eng.qumulo.com:8000",
+          "value": "gravytrain.eng.qumulo.com:8000"
         },
         "datasource": {
           "type": "prometheus",
@@ -1665,6 +1281,6 @@
   "timezone": "",
   "title": "Qumulo Cluster Overview",
   "uid": "isJoSTGVz",
-  "version": 3,
+  "version": 4,
   "weekStart": ""
 }
