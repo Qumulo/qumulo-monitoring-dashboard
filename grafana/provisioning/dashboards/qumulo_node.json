@@ -24,7 +24,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 6,
+  "id": 5,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -319,6 +319,72 @@
       "title": "Time Synchronized",
       "transparent": true,
       "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 3,
+        "x": 3,
+        "y": 8
+      },
+      "id": 33,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.1.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "builder",
+          "expr": "qumulo_memory_correctable_ecc_errors_total{instance=\"$cluster\", node_id=\"$nodes\"}",
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Memory Correctable ECC Errors",
+      "type": "stat"
     }
   ],
   "refresh": "5s",
@@ -332,8 +398,8 @@
       {
         "current": {
           "selected": false,
-          "text": "gravytrain.eng.qumulo.com:8000",
-          "value": "gravytrain.eng.qumulo.com:8000"
+          "text": "bw1-100g:8000",
+          "value": "bw1-100g:8000"
         },
         "datasource": {
           "type": "prometheus",
@@ -359,10 +425,10 @@
         "current": {
           "selected": true,
           "text": [
-            "1"
+            "All"
           ],
           "value": [
-            "1"
+            "$__all"
           ]
         },
         "datasource": {
@@ -395,6 +461,6 @@
   "timezone": "",
   "title": "Qumulo Node Overview",
   "uid": "R66fOPnVz",
-  "version": 10,
+  "version": 2,
   "weekStart": ""
 }
