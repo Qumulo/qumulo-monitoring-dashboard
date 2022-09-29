@@ -377,7 +377,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "builder",
-          "expr": "qumulo_memory_correctable_ecc_errors_total{instance=\"$cluster\", node_id=\"$nodes\"}",
+          "expr": "qumulo_memory_correctable_ecc_errors_total{instance=~\"$cluster\", node_id=~\"$nodes\"}",
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
@@ -461,6 +461,6 @@
   "timezone": "",
   "title": "Qumulo Node Overview",
   "uid": "R66fOPnVz",
-  "version": 2,
+  "version": 3,
   "weekStart": ""
 }
