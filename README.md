@@ -11,6 +11,7 @@ This is a forked repository. So, you may want to visit the original repo at [ste
 
 * Docker Engine >= 1.13
 * Docker Compose >= 1.11
+* Qumulo Core >= 5.2.2
 
 
 ### Step 1 : Clone this repository on your Docker host

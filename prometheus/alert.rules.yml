@@ -42,7 +42,7 @@ groups:
 - name: host
   rules:
   - alert: high_cpu_load
-    expr: node_load1 > 1.5
+    expr: node_load1 > 60
     for: 30s
     labels:
       severity: warning
@@ -80,7 +80,7 @@ groups:
       description: "Grafana container is down for more than 30 seconds."
 
   - alert: grafana_high_cpu
-    expr: sum(rate(container_cpu_usage_seconds_total{name="grafana"}[1m])) / count(node_cpu_seconds_total{mode="system"}) * 100 > 10
+    expr: sum(rate(container_cpu_usage_seconds_total{name="grafana"}[1m])) / count(node_cpu_seconds_total{mode="system"}) * 100 > 20
     for: 30s
     labels:
       severity: warning
