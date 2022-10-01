@@ -24,7 +24,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 5,
+  "id": 6,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -161,23 +161,14 @@
               "mode": "area"
             }
           },
+          "decimals": 0,
           "mappings": [],
-          "max": 90,
-          "min": 35,
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
                 "color": "green",
                 "value": null
-              },
-              {
-                "color": "orange",
-                "value": 75
-              },
-              {
-                "color": "red",
-                "value": 85
               }
             ]
           },
@@ -211,8 +202,8 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "builder",
-          "expr": "qumulo_cpu_temperature_celsius{instance=\"$cluster\", node_id=\"$nodes\"}",
-          "legendFormat": "cpu{{cpu}}",
+          "expr": "qumulo_cpu_temperature_celsius{instance=~\"$cluster\", node_id=~\"$nodes\"}",
+          "legendFormat": "node{{node_id}}_cpu{{cpu}}",
           "range": true,
           "refId": "A"
         }
@@ -261,10 +252,6 @@
               {
                 "color": "super-light-green",
                 "value": null
-              },
-              {
-                "color": "#EAB839",
-                "value": 0
               }
             ]
           },
@@ -296,7 +283,7 @@
           "titleSize": 20,
           "valueSize": 20
         },
-        "textMode": "name"
+        "textMode": "value"
       },
       "pluginVersion": "9.1.2",
       "repeatDirection": "h",
@@ -308,11 +295,11 @@
           },
           "editorMode": "builder",
           "exemplar": true,
-          "expr": "qumulo_time_is_not_synchronizing{instance=~\"$cluster\", node_id=~\"$nodes\"}",
+          "expr": "sum(qumulo_time_is_not_synchronizing{instance=~\"$cluster\", node_id=~\"$nodes\"})",
           "instant": false,
           "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "Time Synchronizing",
+          "legendFormat": "__auto",
           "refId": "A"
         }
       ],
@@ -329,9 +316,11 @@
       "fieldConfig": {
         "defaults": {
           "color": {
+            "fixedColor": "red",
             "mode": "thresholds"
           },
           "mappings": [],
+          "noValue": "No Data",
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -344,7 +333,8 @@
                 "value": 1
               }
             ]
-          }
+          },
+          "unit": "none"
         },
         "overrides": []
       },
@@ -367,7 +357,7 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "textMode": "value"
       },
       "pluginVersion": "9.1.2",
       "targets": [
@@ -384,6 +374,7 @@
         }
       ],
       "title": "Memory Correctable ECC Errors",
+      "transparent": true,
       "type": "stat"
     }
   ],
@@ -398,8 +389,8 @@
       {
         "current": {
           "selected": false,
-          "text": "bw1-100g:8000",
-          "value": "bw1-100g:8000"
+          "text": "iss.eng.qumulo.com:8000",
+          "value": "iss.eng.qumulo.com:8000"
         },
         "datasource": {
           "type": "prometheus",
@@ -461,6 +452,6 @@
   "timezone": "",
   "title": "Qumulo Node Overview",
   "uid": "R66fOPnVz",
-  "version": 3,
+  "version": 4,
   "weekStart": ""
 }
