@@ -5,22 +5,44 @@ global:
   # Attach these labels to any time series or alerts when communicating with
   # external systems (federation, remote storage, Alertmanager).
   external_labels:
-      monitor: 'docker-host-alpha'
+      monitor: 'qumulo-docker-monitor'
 
+######
+## Alerts cannot be evaluated if you are running prometheus in agent mode to ONLY stream the metrics
+## to some remote store. You will have to comment out the rule_files section below
+######
 # Load and evaluate rules in this file every 'evaluation_interval' seconds.
 rule_files:
-  #- "alert.rules.yml"
+  - "alert.rules.yml"
 
 # A scrape configuration containing exactly one endpoint to scrape.
 scrape_configs:
   - job_name: 'qumulo-cluster'
-    scrape_interval: 20s
+    scrape_interval: 15s
     metrics_path: '/v2/metrics/endpoints/default/data'
     scheme: https
     static_configs:
       - targets: ['<cluster api endpoint>']
 
   - job_name: 'prometheus'
-    scrape_interval: 10s
+    scrape_interval: 15s
     static_configs:
       - targets: ['localhost:9090']
+
+######
+## Use the below remote_write section if you want to stream/store the metrics to a remote store like 
+## Amazon Managed Service for Prometheus. 
+## Don't forget to fill-in the appropriate AWS region, AMP workspaceid and AWS access/secret keys
+#
+#remote_write:
+#  - 
+#    url: https://aps-workspaces.<AWS region>.amazonaws.com/workspaces/<workspace id>/api/v1/remote_write
+#    queue_config:
+#        max_samples_per_send: 1000
+#        max_shards: 200
+#        capacity: 2500
+#    sigv4:
+#         region: <AWS region>
+#         access_key: <AWS Access Key>
+#         secret_key: <AWS Secret Key>
+######

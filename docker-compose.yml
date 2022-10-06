@@ -18,12 +18,17 @@ services:
       - prometheus_data:/prometheus
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
-      #- '--storage.tsdb.path=/prometheus'
       - '--web.console.libraries=/etc/prometheus/console_libraries'
       - '--web.console.templates=/etc/prometheus/consoles'
-      #- '--storage.tsdb.retention.time=200h'
       - '--web.enable-lifecycle'
-      - '--enable-feature=agent'
+      ######
+      ## Enable the agent feature if you do not want to store metrics locally but rather stream them
+      ## to a remote store using remote_write. Should also comment out the storage.tsdb.* flags below
+      ##- '--enable-feature=agent'
+      ######
+      - '--storage.tsdb.path=/prometheus'
+      - '--storage.tsdb.retention.time=200h'
+    
     restart: unless-stopped
     expose:
       - 9090
