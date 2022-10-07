@@ -382,6 +382,75 @@
         "type": "prometheus",
         "uid": "PBFA97CFB590B2093"
       },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 6,
+        "x": 6,
+        "y": 8
+      },
+      "id": 35,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "name"
+      },
+      "pluginVersion": "9.1.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "builder",
+          "exemplar": false,
+          "expr": "qumulo_power_supply_is_unhealthy{instance=~\"$cluster\", node_id=~\"$nodes\"}",
+          "instant": false,
+          "legendFormat": "node{{node_id}} {{location}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Power Supplies",
+      "transparent": true,
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -435,7 +504,7 @@
       "gridPos": {
         "h": 8,
         "w": 11,
-        "x": 6,
+        "x": 12,
         "y": 8
       },
       "id": 34,
@@ -478,9 +547,9 @@
     "list": [
       {
         "current": {
-          "selected": false,
-          "text": "df55.eng.qumulo.com:8000",
-          "value": "df55.eng.qumulo.com:8000"
+          "selected": true,
+          "text": "du97.eng.qumulo.com:8000",
+          "value": "du97.eng.qumulo.com:8000"
         },
         "datasource": {
           "type": "prometheus",
@@ -542,6 +611,6 @@
   "timezone": "",
   "title": "Qumulo Node Overview",
   "uid": "R66fOPnVz",
-  "version": 2,
+  "version": 3,
   "weekStart": ""
 }
