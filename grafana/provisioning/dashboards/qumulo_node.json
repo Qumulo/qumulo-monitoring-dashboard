@@ -696,7 +696,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "builder",
-          "expr": "rate(qumulo_network_interface_received_bytes_total{instance=~\"$cluster\", node_id=~\"$nodes\"}[5m])",
+          "expr": "rate(qumulo_network_interface_received_bytes_total{instance=~\"$cluster\", node_id=~\"$nodes\"}[$__rate_interval])",
           "hide": false,
           "legendFormat": "Received node{{node_id}} {{role}} {{interface}}",
           "range": true,
