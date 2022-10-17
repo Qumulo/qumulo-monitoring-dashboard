@@ -24,10 +24,197 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 6,
+  "id": 5,
   "links": [],
   "liveNow": false,
   "panels": [
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "text",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 5,
+        "x": 0,
+        "y": 0
+      },
+      "id": 53,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^name$/",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.1.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "builder",
+          "expr": "qumulo_info",
+          "format": "table",
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Cluster Name",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "text",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 5,
+        "x": 5,
+        "y": 0
+      },
+      "id": 51,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^version$/",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.1.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "builder",
+          "expr": "qumulo_info",
+          "format": "table",
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Version",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "text",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 5,
+        "x": 10,
+        "y": 0
+      },
+      "id": 49,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^uuid$/",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.1.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "builder",
+          "expr": "qumulo_info",
+          "format": "table",
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "UUID",
+      "type": "stat"
+    },
     {
       "datasource": {
         "type": "prometheus",
@@ -90,7 +277,7 @@
         "h": 8,
         "w": 11,
         "x": 0,
-        "y": 0
+        "y": 6
       },
       "id": 24,
       "options": {
@@ -180,7 +367,7 @@
         "h": 8,
         "w": 12,
         "x": 11,
-        "y": 0
+        "y": 6
       },
       "id": 31,
       "options": {
@@ -263,7 +450,7 @@
         "h": 8,
         "w": 3,
         "x": 0,
-        "y": 8
+        "y": 14
       },
       "id": 25,
       "maxPerRow": 12,
@@ -342,7 +529,7 @@
         "h": 8,
         "w": 3,
         "x": 3,
-        "y": 8
+        "y": 14
       },
       "id": 33,
       "options": {
@@ -409,7 +596,7 @@
         "h": 8,
         "w": 6,
         "x": 6,
-        "y": 8
+        "y": 14
       },
       "id": 35,
       "options": {
@@ -505,7 +692,7 @@
         "h": 8,
         "w": 11,
         "x": 12,
-        "y": 8
+        "y": 14
       },
       "id": 34,
       "options": {
@@ -571,7 +758,7 @@
         "h": 4,
         "w": 3,
         "x": 0,
-        "y": 16
+        "y": 22
       },
       "id": 45,
       "options": {
@@ -663,7 +850,7 @@
         "h": 8,
         "w": 7,
         "x": 3,
-        "y": 16
+        "y": 22
       },
       "id": 37,
       "options": {
@@ -768,7 +955,7 @@
         "h": 8,
         "w": 7,
         "x": 10,
-        "y": 16
+        "y": 22
       },
       "id": 41,
       "options": {
@@ -872,7 +1059,7 @@
         "h": 8,
         "w": 6,
         "x": 17,
-        "y": 16
+        "y": 22
       },
       "id": 39,
       "options": {
@@ -930,8 +1117,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -946,7 +1132,7 @@
         "h": 4,
         "w": 3,
         "x": 0,
-        "y": 20
+        "y": 26
       },
       "id": 43,
       "options": {
@@ -997,8 +1183,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               }
             ]
           },
@@ -1010,7 +1195,7 @@
         "h": 4,
         "w": 3,
         "x": 0,
-        "y": 24
+        "y": 30
       },
       "id": 47,
       "options": {
@@ -1056,8 +1241,8 @@
       {
         "current": {
           "selected": false,
-          "text": "bw15.eng.qumulo.com:8000",
-          "value": "bw15.eng.qumulo.com:8000"
+          "text": "mmurphy-desktop.eng.qumulo.com:17229",
+          "value": "mmurphy-desktop.eng.qumulo.com:17229"
         },
         "datasource": {
           "type": "prometheus",
@@ -1117,6 +1302,6 @@
   "timezone": "",
   "title": "Qumulo Node Overview",
   "uid": "R66fOPnVz",
-  "version": 9,
+  "version": 7,
   "weekStart": ""
 }
