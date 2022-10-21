@@ -27,13 +27,13 @@ Update the prometheus [scrape config](/prometheus/prometheus.yml#L21-L21) with t
 
 ### Step 3 : Run the docker-compose
 ```
-ADMIN_USER=admin ADMIN_PASSWORD=admin ADMIN_PASSWORD_HASH=JDJhJDE0JE91S1FrN0Z0VEsyWmhrQVpON1VzdHVLSDkyWHdsN0xNbEZYdnNIZm1pb2d1blg4Y09mL0ZP docker-compose up -d
+docker-compose up -d
 ```
 
 
 ## Containers:
-* Grafana (visualize metrics) `http://<host-ip>:3000`
-* Prometheus (metrics database) `http://<host-ip>:9090`
+* Grafana (visualize metrics) `http://<host-ip>:3000` (username: admin, password: admin)
+* Prometheus (metrics database) `http://<host-ip>:9090` (username: admin, password: admin)
 * AlertManager (alerts management) `http://<host-ip>:9093`
 * NodeExporter (host metrics collector)
 * cAdvisor (containers metrics collector)
