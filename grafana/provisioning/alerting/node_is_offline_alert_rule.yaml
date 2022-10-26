@@ -1,0 +1,69 @@
+# config file version
+apiVersion: 1
+
+# List of rule groups to import or update
+groups:
+  - name: hardware
+    folder: qumulo
+    interval: 60s
+    rules:
+      - uid: p9gj3OHVk
+        title: Node is offline
+        condition: node was offline
+        data:
+          - refId: node is offline
+            queryType: ''
+            relativeTimeRange:
+              from: 60
+              to: 0
+            datasourceUid: PBFA97CFB590B2093
+            model:
+              editorMode: builder
+              expr: qumulo_quorum_node_is_offline
+              hide: false
+              intervalMs: 1000
+              legendFormat: __auto
+              maxDataPoints: 43200
+              range: true
+              refId: node is offline
+          - refId: node was offline
+            queryType: ''
+            relativeTimeRange:
+              from: 0
+              to: 0
+            datasourceUid: '-100'
+            model:
+              conditions:
+                - evaluator:
+                    params:
+                      - 3
+                    type: gt
+                  operator:
+                    type: and
+                  query:
+                    params:
+                      - node is offline
+                  reducer:
+                    params: []
+                    type: last
+                  type: query
+              datasource:
+                type: __expr__
+                uid: '-100'
+              expression: node is offline
+              hide: false
+              intervalMs: 1000
+              maxDataPoints: 43200
+              reducer: max
+              refId: node was offline
+              type: reduce
+        updated: '2022-10-26T18:50:35Z'
+        noDataState: Alerting
+        execErrState: Alerting
+        for: 5m
+        annotations:
+          description: >-
+            Node {{ $$labels.node_id }} is offline. Please verify that the node is powered on and
+            its network interfaces are cabled correctly.
+        labels:
+          severity: critical

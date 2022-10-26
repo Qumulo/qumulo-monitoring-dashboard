@@ -1,0 +1,100 @@
+# config file version
+apiVersion: 1
+
+# List of rule groups to import or update
+groups:
+  - name: hardware
+    folder: qumulo
+    interval: 60s
+    rules:
+      - uid: WIrA8dHVz
+        title: Fan is stopped
+        condition: fan_has_stopped
+        data:
+          - refId: fan_speed
+            queryType: ''
+            relativeTimeRange:
+              from: 60
+              to: 0
+            datasourceUid: PBFA97CFB590B2093
+            model:
+              editorMode: builder
+              expr: qumulo_fan_speed_rpm
+              hide: false
+              intervalMs: 1000
+              legendFormat: __auto
+              maxDataPoints: 43200
+              range: true
+              refId: fan_speed
+          - refId: mean_fan_speed
+            queryType: ''
+            relativeTimeRange:
+              from: 0
+              to: 0
+            datasourceUid: "-100"
+            model:
+              conditions:
+              - evaluator:
+                  params:
+                  - 3
+                  type: gt
+                operator:
+                  type: and
+                query:
+                  params:
+                  - fan speed
+                reducer:
+                  params: []
+                  type: last
+                type: query
+              datasource:
+                type: __expr__
+                uid: "-100"
+              expression: fan_speed
+              hide: false
+              intervalMs: 1000
+              maxDataPoints: 43200
+              reducer: mean
+              refId: mean_fan_speed
+              type: reduce
+          - refId: fan_has_stopped
+            queryType: ''
+            relativeTimeRange:
+              from: 0
+              to: 0
+            datasourceUid: "-100"
+            model:
+              conditions:
+              - evaluator:
+                  params:
+                  - 0
+                  - 0
+                  type: gt
+                operator:
+                  type: and
+                query:
+                  params:
+                  - mean fan speed
+                reducer:
+                  params: []
+                  type: avg
+                type: query
+              datasource:
+                name: Expression
+                type: __expr__
+                uid: __expr__
+              expression: "${mean_fan_speed} <= 0"
+              hide: false
+              intervalMs: 1000
+              maxDataPoints: 43200
+              refId: fan_has_stopped
+              type: math
+        noDataState: NoData
+        execErrState: Error
+        for: 5m
+        annotations:
+          description: >-
+            The {{ $$labels.fan }} fan on node {{ $$labels.node_id }} has stopped. Please replace
+            the fan as soon as possible.
+        labels:
+          severity: critical
