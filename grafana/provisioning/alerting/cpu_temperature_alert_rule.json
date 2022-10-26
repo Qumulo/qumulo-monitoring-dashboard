@@ -118,12 +118,12 @@
       }
     }
   ],
-  "updated": "2022-10-26T18:50:35Z",
+  "updated": "2022-10-26T20:54:49Z",
   "noDataState": "NoData",
   "execErrState": "Alerting",
   "for": "5m",
   "annotations": {
-    "description": "CPU {{ $labels.cpu }} on node {{ $labels.node_id }} has a temperature of {{ $average_cpu_temperature }} C which is over the threshold of 85 C. Please verify that your cooling systems are functional."
+    "description": "CPU {{ $labels.cpu }} on node {{ $labels.node_id }} has a temperature of {{ $values.average_cpu_temperature.Value }} C which is over the threshold of 85 C. Please verify that your cooling systems are functional."
   },
   "labels": {
     "severity": "critical"
