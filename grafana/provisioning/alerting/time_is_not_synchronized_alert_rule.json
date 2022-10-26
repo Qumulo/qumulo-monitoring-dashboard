@@ -1,0 +1,85 @@
+{
+  "id": 3,
+  "uid": "Ut0U6HH4k",
+  "orgID": 1,
+  "folderUID": "OHQldHHVk",
+  "ruleGroup": "cluster",
+  "title": "Time is not synchonized",
+  "condition": "time_was_not_synchronized",
+  "data": [
+    {
+      "refId": "time_is_not_synchronized",
+      "queryType": "",
+      "relativeTimeRange": {
+        "from": 600,
+        "to": 0
+      },
+      "datasourceUid": "PBFA97CFB590B2093",
+      "model": {
+        "editorMode": "builder",
+        "expr": "qumulo_time_is_not_synchronizing",
+        "hide": false,
+        "intervalMs": 1000,
+        "legendFormat": "__auto",
+        "maxDataPoints": 43200,
+        "range": true,
+        "refId": "time_is_not_synchronized"
+      }
+    },
+    {
+      "refId": "time_was_not_synchronized",
+      "queryType": "",
+      "relativeTimeRange": {
+        "from": 0,
+        "to": 0
+      },
+      "datasourceUid": "-100",
+      "model": {
+        "conditions": [
+          {
+            "evaluator": {
+              "params": [
+                3
+              ],
+              "type": "gt"
+            },
+            "operator": {
+              "type": "and"
+            },
+            "query": {
+              "params": [
+                "A"
+              ]
+            },
+            "reducer": {
+              "params": [],
+              "type": "last"
+            },
+            "type": "query"
+          }
+        ],
+        "datasource": {
+          "type": "__expr__",
+          "uid": "-100"
+        },
+        "expression": "time_is_not_synchronized",
+        "hide": false,
+        "intervalMs": 1000,
+        "maxDataPoints": 43200,
+        "reducer": "max",
+        "refId": "time_was_not_synchronized",
+        "type": "reduce"
+      }
+    }
+  ],
+  "updated": "2022-10-26T18:50:59Z",
+  "noDataState": "NoData",
+  "execErrState": "Alerting",
+  "for": "1h",
+  "annotations": {
+    "description": "The time on node {{ $labels.node_id }} is no longer being synchronized with a time server. Eventually the time may drift. Please verify the node's ability to reach the time server."
+  },
+  "labels": {
+    "severity": "warning"
+  }
+}

@@ -1,0 +1,131 @@
+{
+  "id": 5,
+  "uid": "Y-VEkDH4k",
+  "orgID": 1,
+  "folderUID": "OHQldHHVk",
+  "ruleGroup": "hardware",
+  "title": "CPU temperature is too high",
+  "condition": "cpu_too_hot",
+  "data": [
+    {
+      "refId": "cpu_temperature",
+      "queryType": "",
+      "relativeTimeRange": {
+        "from": 60,
+        "to": 0
+      },
+      "datasourceUid": "PBFA97CFB590B2093",
+      "model": {
+        "editorMode": "builder",
+        "expr": "qumulo_cpu_temperature_celsius",
+        "hide": false,
+        "intervalMs": 1000,
+        "legendFormat": "__auto",
+        "maxDataPoints": 43200,
+        "range": true,
+        "refId": "cpu_temperature"
+      }
+    },
+    {
+      "refId": "average_cpu_temperature",
+      "queryType": "",
+      "relativeTimeRange": {
+        "from": 0,
+        "to": 0
+      },
+      "datasourceUid": "-100",
+      "model": {
+        "conditions": [
+          {
+            "evaluator": {
+              "params": [
+                3
+              ],
+              "type": "gt"
+            },
+            "operator": {
+              "type": "and"
+            },
+            "query": {
+              "params": [
+                "A"
+              ]
+            },
+            "reducer": {
+              "params": [],
+              "type": "last"
+            },
+            "type": "query"
+          }
+        ],
+        "datasource": {
+          "type": "__expr__",
+          "uid": "-100"
+        },
+        "expression": "cpu_temperature",
+        "hide": false,
+        "intervalMs": 1000,
+        "maxDataPoints": 43200,
+        "reducer": "mean",
+        "refId": "average_cpu_temperature",
+        "type": "reduce"
+      }
+    },
+    {
+      "refId": "cpu_too_hot",
+      "queryType": "",
+      "relativeTimeRange": {
+        "from": 0,
+        "to": 0
+      },
+      "datasourceUid": "-100",
+      "model": {
+        "conditions": [
+          {
+            "evaluator": {
+              "params": [
+                0,
+                0
+              ],
+              "type": "gt"
+            },
+            "operator": {
+              "type": "and"
+            },
+            "query": {
+              "params": [
+                "Average CPU temperature"
+              ]
+            },
+            "reducer": {
+              "params": [],
+              "type": "avg"
+            },
+            "type": "query"
+          }
+        ],
+        "datasource": {
+          "name": "Expression",
+          "type": "__expr__",
+          "uid": "__expr__"
+        },
+        "expression": "${average_cpu_temperature} > 85",
+        "hide": false,
+        "intervalMs": 1000,
+        "maxDataPoints": 43200,
+        "refId": "cpu_too_hot",
+        "type": "math"
+      }
+    }
+  ],
+  "updated": "2022-10-26T18:50:35Z",
+  "noDataState": "NoData",
+  "execErrState": "Alerting",
+  "for": "5m",
+  "annotations": {
+    "description": "CPU {{ $labels.cpu }} on node {{ $labels.node_id }} has a temperature of {{ $average_cpu_temperature }} C which is over the threshold of 85 C. Please verify that your cooling systems are functional."
+  },
+  "labels": {
+    "severity": "critical"
+  }
+}
