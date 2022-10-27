@@ -20,7 +20,7 @@ For information on the complete list of metrics available, see the
 
 ### Step 1 : Clone this repository on your Docker host
 ```
-git clone git@github.com:Qumulo/openmetrics-demo.git
+git clone git@github.com:Qumulo/qumulo-monitoring-dashboard.git
 cd openmetrics-demo
 ```
 
