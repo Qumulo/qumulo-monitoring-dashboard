@@ -1,0 +1,57 @@
+# config file version
+apiVersion: 1
+
+# List of rule groups to import or update
+groups:
+  - name: hardware
+    folder: Qumulo
+    interval: 60s
+    rules:
+      - uid: 645XdHHVk
+        ruleGroup: hardware
+        title: Disk is unhealthy
+        condition: disk_was_unhealthy
+        data:
+          - refId: disk_is_unhealthy
+            queryType: ''
+            relativeTimeRange:
+              from: 60
+              to: 0
+            datasourceUid: PBFA97CFB590B2093
+            model:
+              editorMode: builder
+              expr: qumulo_disk_is_unhealthy
+              hide: false
+              intervalMs: 1000
+              legendFormat: __auto
+              maxDataPoints: 43200
+              range: true
+              refId: disk is unhealthy
+          - refId: disk_was_unhealthy
+            queryType: ''
+            relativeTimeRange:
+              from: 0
+              to: 0
+            datasourceUid: '-100'
+            model:
+              datasource:
+                name: Expression
+                type: __expr__
+                uid: __expr__
+              expression: disk_is_unhealthy
+              hide: false
+              intervalMs: 1000
+              maxDataPoints: 43200
+              reducer: max
+              refId: disk was unhealthy
+              type: reduce
+        noDataState: NoData
+        execErrState: Error
+        for: 5m
+        annotations:
+          description: >-
+            The {{ $$labels.disk_type }} at drive bay {{ $$labels.drive_bay }} on node
+            {{ $$labels.node_id }} has errors, has been removed from the cluster, or is otherwise
+            unusable. Please replace the disk as soon as possible.
+        labels:
+          severity: critical

@@ -1,0 +1,54 @@
+# config file version
+apiVersion: 1
+
+# List of rule groups to import or update
+groups:
+  - name: hardware
+    folder: Qumulo
+    interval: 60s
+    rules:
+      - uid: ZZRA3dN4k
+        title: Network interface is down
+        condition: network_was_down
+        data:
+          - refId: network_is_down
+            queryType: ''
+            relativeTimeRange:
+              from: 60
+              to: 0
+            datasourceUid: PBFA97CFB590B2093
+            model:
+              editorMode: builder
+              expr: qumulo_network_interface_is_down
+              hide: false
+              intervalMs: 1000
+              legendFormat: __auto
+              maxDataPoints: 43200
+              range: true
+              refId: network_is_down
+          - refId: network_was_down
+            queryType: ''
+            relativeTimeRange:
+              from: 0
+              to: 0
+            datasourceUid: '-100'
+            model:
+              datasource:
+                type: __expr__
+                uid: '-100'
+              expression: network_is_down
+              hide: false
+              intervalMs: 1000
+              maxDataPoints: 43200
+              reducer: max
+              refId: network_was_down
+              type: reduce
+        noDataState: NoData
+        execErrState: Error
+        for: 5m
+        annotations:
+          description: >-
+            The {{ $$labels.interface }} network interface on node {{ $$labels.node_id }} is down.
+            Please verify that the network interface is cabled properly.
+        labels:
+          severity: critical

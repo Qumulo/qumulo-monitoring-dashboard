@@ -1,0 +1,155 @@
+# config file version
+apiVersion: 1
+
+# List of rule groups to import or update
+groups:
+  - name: hardware
+    folder: Qumulo
+    interval: 60s
+    rules:
+      - uid: s-frONH4k
+        title: Low free space
+        condition: Less than 10% free space
+        data:
+          - refId: free
+            queryType: ''
+            relativeTimeRange:
+              from: 600
+              to: 0
+            datasourceUid: PBFA97CFB590B2093
+            model:
+              datasource:
+                type: prometheus
+                uid: PBFA97CFB590B2093
+              editorMode: builder
+              expr: qumulo_fs_free_bytes
+              hide: false
+              interval: ''
+              intervalMs: 15000
+              legendFormat: free
+              maxDataPoints: 43200
+              range: true
+              refId: free
+          - refId: mean_free
+            queryType: ''
+            relativeTimeRange:
+              from: 0
+              to: 0
+            datasourceUid: '-100'
+            model:
+              datasource:
+                name: Expression
+                type: __expr__
+                uid: __expr__
+              expression: free
+              hide: false
+              intervalMs: 1000
+              maxDataPoints: 43200
+              reducer: mean
+              refId: mean_free
+              type: reduce
+          - refId: capacity
+            queryType: ''
+            relativeTimeRange:
+              from: 600
+              to: 0
+            datasourceUid: PBFA97CFB590B2093
+            model:
+              datasource:
+                type: prometheus
+                uid: PBFA97CFB590B2093
+              editorMode: builder
+              expr: qumulo_fs_capacity_bytes
+              hide: false
+              interval: ''
+              intervalMs: 15000
+              legendFormat: capacity
+              maxDataPoints: 43200
+              range: true
+              refId: capacity
+          - refId: mean_capacity
+            queryType: ''
+            relativeTimeRange:
+              from: 0
+              to: 0
+            datasourceUid: '-100'
+            model:
+              datasource:
+                name: Expression
+                type: __expr__
+                uid: __expr__
+              expression: capacity
+              hide: false
+              intervalMs: 1000
+              maxDataPoints: 43200
+              reducer: mean
+              refId: mean_capacity
+              type: reduce
+          - refId: percent_free
+            queryType: ''
+            relativeTimeRange:
+              from: 0
+              to: 0
+            datasourceUid: '-100'
+            model:
+              datasource:
+                name: Expression
+                type: __expr__
+                uid: __expr__
+              expression: $mean_free / $mean_capacity
+              hide: false
+              intervalMs: 1000
+              maxDataPoints: 43200
+              refId: percent_free
+              type: math
+          - refId: Less than 10% free space
+            queryType: ''
+            relativeTimeRange:
+              from: 0
+              to: 0
+            datasourceUid: '-100'
+            model:
+              datasource:
+                name: Expression
+                type: __expr__
+                uid: __expr__
+              expression: ${percent_free} < 0.1
+              hide: false
+              intervalMs: 1000
+              maxDataPoints: 43200
+              refId: Less than 10% free space
+              type: math
+          - refId: info
+            queryType: ''
+            relativeTimeRange:
+              from: 60
+              to: 0
+            datasourceUid: PBFA97CFB590B2093
+            model:
+              datasource:
+                type: prometheus
+                uid: PBFA97CFB590B2093
+              editorMode: builder
+              exemplar: false
+              expr: qumulo_info
+              hide: false
+              instant: true
+              intervalMs: 1000
+              legendFormat: __auto
+              maxDataPoints: 43200
+              range: false
+              refId: info
+        updated: '2022-10-26T18:50:59Z'
+        noDataState: NoData
+        execErrState: Error
+        for: 1h
+        annotations:
+          __dashboardUid__: isJoSTGVz
+          __panelId__: '22'
+          description: >-
+            The cluster {{ $$values.info.Labels.name }} has
+            {{ humanizePercentage $$values.percent_free.Value }}
+            ({{ humanize $$values.mean_free.Value }}) remaining capacity, which is below the
+            threshold of 10%. Consider expanding capacity soon.
+        labels:
+          severity: warning
