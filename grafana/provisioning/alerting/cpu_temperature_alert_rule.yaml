@@ -4,7 +4,7 @@ apiVersion: 1
 # List of rule groups to import or update
 groups:
   - name: hardware
-    folder: qumulo
+    folder: Qumulo
     interval: 60s
     rules:
       - uid: Y-VEkDH4k
@@ -34,20 +34,6 @@ groups:
               to: 0
             datasourceUid: '-100'
             model:
-              conditions:
-                - evaluator:
-                    params:
-                      - 3
-                    type: gt
-                  operator:
-                    type: and
-                  query:
-                    params:
-                      - A
-                  reducer:
-                    params: []
-                    type: last
-                  type: query
               datasource:
                 type: __expr__
                 uid: '-100'
@@ -65,21 +51,6 @@ groups:
               to: 0
             datasourceUid: '-100'
             model:
-              conditions:
-                - evaluator:
-                    params:
-                      - 0
-                      - 0
-                    type: gt
-                  operator:
-                    type: and
-                  query:
-                    params:
-                      - Average CPU temperature
-                  reducer:
-                    params: []
-                    type: avg
-                  type: query
               datasource:
                 name: Expression
                 type: __expr__
