@@ -21,7 +21,7 @@ For information on the complete list of metrics available, see the
 ### Step 1 : Clone this repository on your Docker host
 ```
 git clone git@github.com:Qumulo/qumulo-monitoring-dashboard.git
-cd openmetrics-demo
+cd qumulo-monitoring-dashboard
 ```
 
 ### Step 2 : Create a service account and access token on your Qumulo cluster(s).
