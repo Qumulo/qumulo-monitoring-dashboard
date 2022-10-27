@@ -11,7 +11,7 @@ volumes:
 services:
 
   prometheus:
-    image: prom/prometheus:v2.38.0
+    image: prom/prometheus:v2.39.1
     container_name: prometheus
     volumes:
       - ./prometheus:/etc/prometheus
@@ -21,13 +21,8 @@ services:
       - '--web.console.libraries=/etc/prometheus/console_libraries'
       - '--web.console.templates=/etc/prometheus/consoles'
       - '--web.enable-lifecycle'
-      ######
-      ## Enable the agent feature if you do not want to store metrics locally but rather stream them
-      ## to a remote store using remote_write. Should also comment out the storage.tsdb.* flags below
-      ##- '--enable-feature=agent'
-      ######
       - '--storage.tsdb.path=/prometheus'
-      - '--storage.tsdb.retention.time=200h'
+      - '--storage.tsdb.retention.time=15d'
 
     restart: unless-stopped
     expose:
@@ -38,7 +33,7 @@ services:
       org.label-schema.group: "monitoring"
 
   grafana:
-    image: grafana/grafana:9.1.2
+    image: grafana/grafana:9.2.2
     container_name: grafana
     volumes:
       - grafana_data:/var/lib/grafana
@@ -47,8 +42,6 @@ services:
       - GF_SECURITY_ADMIN_USER=${ADMIN_USER:-admin}
       - GF_SECURITY_ADMIN_PASSWORD=${ADMIN_PASSWORD:-admin}
       - GF_USERS_ALLOW_SIGN_UP=false
-      - AWS_SDK_LOAD_CONFIG=true
-      - GF_AUTH_SIGV4_AUTH_ENABLED=true
     restart: unless-stopped
     expose:
       - 3000
