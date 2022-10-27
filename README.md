@@ -6,13 +6,16 @@ A monitoring and alering solution for Qumulo clusters. This uses the Qumulo Open
 monitoring software. It comes with a prebuilt set of dashboards and alerts, with the ability to
 further customize by modifying them or creating new ones.
 
+For information on the complete list of metrics available, see the
+[Qumulo OpenMetrics API documentation](https://docs.qumulo.com/administrator-guide/qumulo-core/openmetrics-api-specification.html).
+
 ## Initial Configuration
 
 ### Prerequisites:
 
 * Docker Engine >= 1.13
 * Docker Compose >= 1.11
-* Qumulo Core >= 5.2.2
+* Qumulo Core >= 5.3.0
 
 
 ### Step 1 : Clone this repository on your Docker host
@@ -22,9 +25,9 @@ cd openmetrics-demo
 ```
 
 ### Step 2 : Create a service account and access token on your Qumulo cluster(s).
-Following the Qumulo access tokens documentation, create a service account and assign it a role with
-only PRIVILEGE_METRICS_READ. Then create an access token for that user and temporarily save the
-bearer token.
+Following the [Qumulo access tokens documentation](https://docs.qumulo.com/administrator-guide/qumulo-core/access-tokens.html),
+create a service account and assign it a role with only PRIVILEGE_METRICS_READ. Then create an
+access token for that user and temporarily save the bearer token.
 
 ### Step 3 : Configure Prometheus
 Update the Prometheus [configuration](/prometheus/prometheus.yml#L21-L21) to allow Prometheus to
