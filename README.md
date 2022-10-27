@@ -1,7 +1,7 @@
 Qumulo Monitoring Dashboard
 ===========================
 
-A monitoring and alering solution for Qumulo clusters. This uses the Qumulo OpenMetrics API with a
+A monitoring and alerting solution for Qumulo clusters. This uses the Qumulo OpenMetrics API with a
 [Prometheus](https://prometheus.io/) time series database and [Grafana](http://grafana.org/)
 monitoring software. It comes with a prebuilt set of dashboards and alerts, with the ability to
 further customize by modifying them or creating new ones.
