@@ -89,8 +89,8 @@ If you would like to be notified of Grafana alerts through email, slack, or an a
 ## Updating Configuration
 ### Prometheus
 While Prometheus is running it will not pick up configuration changes automatically. You can stop
-and restart it's container to reload the configuration or you can request that it reload it's
-configuration by making a HTTP POST call using:
+and restart its container to reload the configuration or you can request that it reload its
+configuration by making an HTTP POST call using:
 ```
 curl -X POST http://admin:admin@<docker-host-ip>:9090/-/reload
 ```
