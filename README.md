@@ -93,17 +93,17 @@ This section explains how to verify that Grafana can query Prometheus and displa
 
 1. Connect to the Grafana server at `http://<docker-host-ip>:3000`.
 
-1. Login with `username`: `admin`, `password`: `admin`.
+1. Log in with the `admin` username and `admin` password.
 
-1. Change the password to a secure password.
+1. Configure a secure password.
 
-1. In the menu bar on the left, select `Dashboards`.
+1. On the left menu, click **Dashboards**.
 
-1. Under `Qumulo`, select `Cluster Overview`.
+1. Under **Qumulo**, click **Cluster Overview**.
 
-1. In the `cluster` dropdown in the top left, select your cluster.
+1. In the upper-left, in the **cluster** list, click your cluster.
 
-1. Metrics for the cluster should now populate the graphs.
+   Metrics for your cluster begin to populate graphs.
 
 ### Step 7 : Configure Grafana alert notifications
 This section explains how to configure Grafana alerts to notify you through email, Slack, or an alerting tool.
