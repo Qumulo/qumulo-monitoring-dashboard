@@ -53,7 +53,7 @@ For this section, follow the guidance in [Working with Qumulo Access Tokens](htt
 
      **Notes:**
      
-       * Append `:8000` to the DNS name or IP address to specify the port.
+       * To specify the port, append `:8000` to the DNS name or IP address.
     
        * Because the cluster's metrics are labeled with the target, use a DNS name rather than IP address.
      
