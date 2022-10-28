@@ -30,24 +30,26 @@ Before you begin, ensure that you have the following (or higher) software versio
 ### Step 2: Create a Service Account and Access Token on your Qumulo Clusters
 For this section, follow the guidance in [Working with Qumulo Access Tokens](https://docs.qumulo.com/administrator-guide/qumulo-core/access-tokens.html) on the Qumulo Documentation Portal.
 
+A _bearer token_ is an item in the `Authorization` HTTP header which acts as the authentication mechanism for the Qumulo REST API.
+
 1. Create a service account.
 
 1. Assign a role with only `PRIVILEGE_METRICS_READ` to the service account.
 
-1. Create an access token for the role.
+1. Create an access token for the service account.
 
 1. Save the bearer token temporarily.
 
 ### Step 3: Configure Prometheus
-1. To let Prometheus read metrics from your clusters, update the Prometheus configuration in [`prometheus.yml`](/prometheus/prometheus.yml#L21-L21).
+1. To let Prometheus read metrics from your clusters, update the Prometheus configuration in [`prometheus.yml`](/prometheus/prometheus.yml#L22).
 
    **Note:** Perform the following step for each of your clusters.
 
-1. Under `scrape_configs`, copy the `qumulo-cluster` job and fill in the following:
+1. Into the `scrape_configs` section, copy the `qumulo-cluster` job and fill in the following:
 
    * `job_name`: A unique name for labeling the cluster's metrics.
 
-   * `static_configs` -> `targets`: A list that contains the cluster's DNS name or IP address.
+   * In the `static_configs` block, for `targets`: A list that contains the cluster's DNS name or IP address.
 
      **Notes:**
      
@@ -57,9 +59,9 @@ For this section, follow the guidance in [Working with Qumulo Access Tokens](htt
      
      * To allow monitoring to continue to work if a node goes offline, using floating IP addresses rather than DHCP or static IP addresses.
 
-    * `authorization` -> `credentials`: The bearer token for the service account.
+   * In the `authorization` block, for `credentials`: The bearer token for the service account.
 
-    * `tls_config` -> `insecure_skip_verify`: If the Qumulo cluster uses the default, self-signed SSL certificate, set this value to `true`.
+   * In the `tls_config` block, for `insecure_skip_verify`: If the Qumulo cluster uses the default, self-signed SSL certificate, set this value to `true`.
 
 ### Step 4: Run the Docker Compose Tool
 
@@ -78,7 +80,7 @@ This section explains how to verify that Prometheus can gather metrics from your
 
    If **State** isn't **Up**, check the **Error** to determine why. Common problems include:
 
-   * A mistake in the `static_configs` -> `targets` DNS name or IP address.
+   * In the `static_configs` block, a mistake in `targets`, in a DNS name or IP address.
 
    * Inability to connect to the cluster from the machine that runs the containers.
    
@@ -86,7 +88,7 @@ This section explains how to verify that Prometheus can gather metrics from your
     
    * Missing `:8000` port specification in `static_configs` -> `targets`.
     
-   * `tls_config` -> `insecure_skip_verify` not set to `true` when using a self-signed SSL certificate on a Qumulo cluster.
+   * In the `tls_config` block `insecure_skip_verify` not set to `true` when using a self-signed SSL certificate on a Qumulo cluster.
 
 ### Step 6: Verify Your Grafana Configuration
 This section explains how to verify that Grafana can query Prometheus and display metrics:
