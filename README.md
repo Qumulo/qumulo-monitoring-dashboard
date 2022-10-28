@@ -14,7 +14,6 @@ Before you begin, ensure that you have the following (or higher) software versio
 * Docker Compose 1.11
 * Qumulo Core 5.3.0
 
-
 ### Step 1: Clone This Repository to Your Docker Host
 
 1. Log in to your Docker host.
@@ -27,7 +26,6 @@ Before you begin, ensure that you have the following (or higher) software versio
 
 1. Navigate to the `qumulo-monitoring-dashboard` directory.
 
-
 ### Step 2: Create a Service Account and Access Token on your Qumulo Clusters
 For this section, follow the guidance in [Working with Qumulo Access Tokens](https://docs.qumulo.com/administrator-guide/qumulo-core/access-tokens.html) on the Qumulo Documentation Portal.
 
@@ -38,7 +36,6 @@ For this section, follow the guidance in [Working with Qumulo Access Tokens](htt
 1. Create an access token for the role.
 
 1. Save the bearer token temporarily.
-
 
 ### Step 3: Configure Prometheus
 1. To let Prometheus read metrics from your clusters, update the Prometheus configuration in [`prometheus.yml`](/prometheus/prometheus.yml#L21-L21).
@@ -53,11 +50,11 @@ For this section, follow the guidance in [Working with Qumulo Access Tokens](htt
 
      **Notes:**
      
-       * To specify the port, append `:8000` to the DNS name or IP address.
+     * To specify the port, append `:8000` to the DNS name or IP address.
     
-       * Because the cluster's metrics are labeled with the target, use a DNS name rather than an IP address.
+     * Because the cluster's metrics are labeled with the target, use a DNS name rather than an IP address.
      
-       * To allow monitoring to continue to work if a node goes offline, using floating IP addresses rather than DHCP or static IP addresses.
+     * To allow monitoring to continue to work if a node goes offline, using floating IP addresses rather than DHCP or static IP addresses.
 
     * `authorization` -> `credentials`: The bearer token for the service account.
 
@@ -70,38 +67,60 @@ For this section, follow the guidance in [Working with Qumulo Access Tokens](htt
 docker-compose up -d
 ```
 
-### Step 5 : Verify Prometheus configuration
-To verify that Prometheus is able to gather metrics from your Qumulo cluster(s):
-1. Connect to the Prometheus server at `http://<docker-host-ip>:9090`.
-2. In the menu bar at the top of the page, select `Status` -> `Targets`.
-3. Find your `job_name` in the list and verify that the `State` is `Up`.
-4. If the `State` is not `Up`, check the `Error` to determine why. Common problems include:
-    * Typo in the `static_configs` -> `targets` DNS name or IP address.
-    * Unable to connect to the cluster from the machine running the containers. Test the connection
-    by using the `qq` command line tool from that machine.
-    * Missing the port specification with `:8000` in `static_configs` -> `targets`.
-    * Not setting `tls_config` -> `insecure_skip_verify` to `true` when using a self signed SSL
-    certificate on the Qumulo cluster.
+### Step 5: Verify Your Prometheus configuration
+This section explains how to verify that Prometheus can gather metrics from your Qumulo clusters.
 
-### Step 6 : Verify Grafana configuration
-To verify that Grafana is able to query Prometheus and display metrics:
+1. Connect to the Prometheus server at `http://<docker-host-ip>:9090`.
+
+1. At the top of the page, from the menu bar, select **Status > Targets**.
+
+1. In the list, find your **job_name** and confirm that the **State** is **Up**.
+
+   If **State** isn't **Up**, check the **Error** to determine why. Common problems include:
+
+   * A mistake in the `static_configs` -> `targets` DNS name or IP address.
+
+   * Inability to connect to the cluster from the machine that runs the containers.
+   
+     Test the connection by using the `qq` CLI from that machine.
+    
+   * Missing `:8000` port specification in `static_configs` -> `targets`.
+    
+   * `tls_config` -> `insecure_skip_verify` not set to `true` when using a self-signed SSL certificate on a Qumulo cluster.
+
+### Step 6: Verify Your Grafana Configuration
+This section explains how to verify that Grafana can query Prometheus and display metrics:
+
 1. Connect to the Grafana server at `http://<docker-host-ip>:3000`.
-2. Login with `username`: `admin`, `password`: `admin`.
-3. Change the password to a secure password.
-4. In the menu bar on the left, select `Dashboards`.
-5. Under `Qumulo`, select `Cluster Overview`.
-6. In the `cluster` dropdown in the top left, select your cluster.
-7. Metrics for the cluster should now populate the graphs.
+
+1. Login with `username`: `admin`, `password`: `admin`.
+
+1. Change the password to a secure password.
+
+1. In the menu bar on the left, select `Dashboards`.
+
+1. Under `Qumulo`, select `Cluster Overview`.
+
+1. In the `cluster` dropdown in the top left, select your cluster.
+
+1. Metrics for the cluster should now populate the graphs.
 
 ### Step 7 : Configure Grafana alert notifications
-If you would like to be notified of Grafana alerts through email, slack, or an alerting tool:
+This section explains how to configure Grafana alerts to notify you through email, Slack, or an alerting tool.
+
 1. Connect to the Grafana server at `http://<docker-host-ip>:3000` and login.
-2. In the menu bar on the left, select `Alerting` -> `Contact Points`.
-3. Under `Contact Points` select `New contact point`.
-4. Enter a `Name` for the contact point.
-5. Select a `Contact point type` from the dropdown.
-6. Complete the form depending on the `Contact point type` selected.
-7. Test the contact point using the `Test` button. It may take a few moments for the test message to
+
+1. In the menu bar on the left, select `Alerting` -> `Contact Points`.
+
+1. Under `Contact Points` select `New contact point`.
+
+1. Enter a `Name` for the contact point.
+
+1. Select a `Contact point type` from the dropdown.
+
+1. Complete the form depending on the `Contact point type` selected.
+
+1. Test the contact point using the `Test` button. It may take a few moments for the test message to
   arrive.
 
 
