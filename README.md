@@ -40,25 +40,33 @@ For this section, follow the guidance in [Working with Qumulo Access Tokens](htt
 1. Save the bearer token temporarily.
 
 
-### Step 3 : Configure Prometheus
-Update the Prometheus [configuration](/prometheus/prometheus.yml#L21-L21) to allow Prometheus to
-read metrics from the cluster(s).
+### Step 3: Configure Prometheus
+1. To let Prometheus read metrics from your clusters, update the Prometheus configuration in [`prometheus.yml`](/prometheus/prometheus.yml#L21-L21).
 
-Under `scrape_configs`, for each cluster copy the 'qumulo-cluster' job and fill in:
+   **Note:** Perform the following step for each of your clusters.
 
-* `job_name`: A unique name that the cluster's metrics will be labeled with.
-* `static_configs` -> `targets`: A list containing the DNS name or IP address of the cluster.
-    * Port 8000 must be specified after the DNS name or IP address with `:8000`.
-    * Prefer using a DNS name over IP address as the cluster's metrics will be labeled with the
-    target.
-    * Prefer using floating IP addresses over DHCP/static IP addresses as the monitoring will
-    continue to work if a node goes offline.
-* `authorization` -> `credentials`: The bearer token for the service account.
-* `tls_config` -> `insecure_skip_verify`: If the Qumulo cluster is using the default self signed SSL
-    certificate set this to `true`.
+1. Under `scrape_configs`, copy the `qumulo-cluster` job and fill in the following:
 
-### Step 4 : Run the docker-compose
-```
+   * `job_name`: A unique name for labeling the cluster's metrics.
+
+   * `static_configs` -> `targets`: A list that contains the cluster's DNS name or IP address.
+
+     **Notes:**
+     
+       * Append `:8000` to the DNS name or IP address to specify the port.
+    
+       * Because the cluster's metrics are labeled with the target, use a DNS name rather than IP address.
+     
+       * To allow monitoring to continue to work if a node goes offline, using floating IP addresses rather than DHCP or static IP addresses.
+
+    * `authorization` -> `credentials`: The bearer token for the service account.
+
+    * `tls_config` -> `insecure_skip_verify`: If the Qumulo cluster uses the default, self-signed SSL certificate, set this value to `true`.
+
+
+### Step 4: Run the Docker Compose Tool
+
+```bash
 docker-compose up -d
 ```
 
