@@ -1,33 +1,44 @@
-Qumulo Monitoring Dashboard
-===========================
+# Qumulo Monitoring Dashboard
+This dashboard is a monitoring and alerting solution for Qumulo clusters. This solution uses the Qumulo OpenMetrics API with a [Prometheus](https://prometheus.io/) time-series database and [Grafana](http://grafana.org/) monitoring software and includes a set of dashboards and alerts that you can customize or use as templates.
 
-A monitoring and alerting solution for Qumulo clusters. This uses the Qumulo OpenMetrics API with a
-[Prometheus](https://prometheus.io/) time series database and [Grafana](http://grafana.org/)
-monitoring software. It comes with a prebuilt set of dashboards and alerts, with the ability to
-further customize by modifying them or creating new ones.
-
-For information on the complete list of metrics available, see the
-[Qumulo OpenMetrics API documentation](https://docs.qumulo.com/administrator-guide/qumulo-core/openmetrics-api-specification.html).
+For detailed information about available metrics, see
+[Qumulo OpenMetrics API Specification](https://docs.qumulo.com/administrator-guide/qumulo-core/openmetrics-api-specification.html) on the Qumulo Documentation Portal.
 
 ## Initial Configuration
+This section explains the initial configuration of the Qumulo Monitoring Dashboard.
 
-### Prerequisites:
+### Prerequisites
+Before you begin, ensure that you have the following (or higher) software versions:
 
-* Docker Engine >= 1.13
-* Docker Compose >= 1.11
-* Qumulo Core >= 5.3.0
+* Docker Engine 1.13
+* Docker Compose 1.11
+* Qumulo Core 5.3.0
 
 
-### Step 1 : Clone this repository on your Docker host
-```
-git clone git@github.com:Qumulo/qumulo-monitoring-dashboard.git
-cd qumulo-monitoring-dashboard
-```
+### Step 1: Clone This Repository to Your Docker Host
 
-### Step 2 : Create a service account and access token on your Qumulo cluster(s).
-Following the [Qumulo access tokens documentation](https://docs.qumulo.com/administrator-guide/qumulo-core/access-tokens.html),
-create a service account and assign it a role with only PRIVILEGE_METRICS_READ. Then create an
-access token for that user and temporarily save the bearer token.
+1. Log in to your Docker host.
+
+1. Use the `git` CLI to clone this repository.
+
+   ```bash
+   git clone git@github.com:Qumulo/qumulo-monitoring-dashboard.git
+   ```
+
+1. Navigate to the `qumulo-monitoring-dashboard` directory.
+
+
+### Step 2: Create a Service Account and Access Token on your Qumulo Clusters
+For this section, follow the guidance in [Working with Qumulo Access Tokens](https://docs.qumulo.com/administrator-guide/qumulo-core/access-tokens.html) on the Qumulo Documentation Portal.
+
+1. Create a service account.
+
+1. Assign a role with only `PRIVILEGE_METRICS_READ` to the service account.
+
+1. Create an access token for the role.
+
+1. Save the bearer token temporarily.
+
 
 ### Step 3 : Configure Prometheus
 Update the Prometheus [configuration](/prometheus/prometheus.yml#L21-L21) to allow Prometheus to
