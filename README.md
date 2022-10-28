@@ -55,7 +55,7 @@ For this section, follow the guidance in [Working with Qumulo Access Tokens](htt
      
        * To specify the port, append `:8000` to the DNS name or IP address.
     
-       * Because the cluster's metrics are labeled with the target, use a DNS name rather than IP address.
+       * Because the cluster's metrics are labeled with the target, use a DNS name rather than an IP address.
      
        * To allow monitoring to continue to work if a node goes offline, using floating IP addresses rather than DHCP or static IP addresses.
 
