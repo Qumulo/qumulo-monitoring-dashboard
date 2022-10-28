@@ -4,6 +4,7 @@ This dashboard is a monitoring and alerting solution for Qumulo clusters. This s
 For detailed information about available metrics, see
 [Qumulo OpenMetrics API Specification](https://docs.qumulo.com/administrator-guide/qumulo-core/openmetrics-api-specification.html) on the Qumulo Documentation Portal.
 
+
 ## Initial Configuration
 This section explains the initial configuration of the Qumulo Monitoring Dashboard.
 
@@ -60,7 +61,6 @@ For this section, follow the guidance in [Working with Qumulo Access Tokens](htt
 
     * `tls_config` -> `insecure_skip_verify`: If the Qumulo cluster uses the default, self-signed SSL certificate, set this value to `true`.
 
-
 ### Step 4: Run the Docker Compose Tool
 
 ```bash
@@ -105,30 +105,36 @@ This section explains how to verify that Grafana can query Prometheus and displa
 
    Metrics for your cluster begin to populate graphs.
 
-### Step 7 : Configure Grafana alert notifications
+### Step 7: Configure Grafana Alert Notifications
 This section explains how to configure Grafana alerts to notify you through email, Slack, or an alerting tool.
 
-1. Connect to the Grafana server at `http://<docker-host-ip>:3000` and login.
+1. Log in to the Grafana server at `http://<docker-host-ip>:3000`.
 
-1. In the menu bar on the left, select `Alerting` -> `Contact Points`.
+1. On the left menu, click **Alertin > Contact Points**.
 
-1. Under `Contact Points` select `New contact point`.
+1. Under **Contact Points**, click **New contact point**.
 
-1. Enter a `Name` for the contact point.
+1. Enter a **Name** for the contact point.
 
-1. Select a `Contact point type` from the dropdown.
+1. From the list, click a **Contact point type**.
 
-1. Complete the form depending on the `Contact point type` selected.
+1. Complete the form that appears depending on the contact point type that you select.
 
-1. Test the contact point using the `Test` button. It may take a few moments for the test message to
-  arrive.
+1. To test the contact point, click **Test** button.
+
+   **Note:** The test message might take a few minutes to arrive.
 
 
-## Updating Configuration
-### Prometheus
-While Prometheus is running it will not pick up configuration changes automatically. You can stop
-and restart its container to reload the configuration or you can request that it reload its
-configuration by making an HTTP POST call using:
-```
-curl -X POST http://admin:admin@<docker-host-ip>:9090/-/reload
-```
+## Updating Your Configuration
+This section explains updating the configuration of the Qumulo Monitoring Dashboard.
+
+### Updating Prometheus Configuration
+While Prometheus runs, it doesn't apply configuration changes automatically. To reload the configuration, you must do one of the following:
+
+* Stop and restart the container that Prometheus runs in.
+
+* Make an HTTP `POST` call by using the following command.
+
+  ```bash
+  curl -X POST http://admin:admin@<docker-host-ip>:9090/-/reload
+  ```
