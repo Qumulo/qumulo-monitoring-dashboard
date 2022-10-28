@@ -124,7 +124,7 @@ This section explains how to verify that Grafana can query Prometheus and displa
 
 1. On the **Welcome to Grafana** page, enter a new, secure password and click **Submit**.
 
-1. On the left menu bar, click [screenshot] **Dashboards**.
+1. On the left menu bar, click ![Dashboards](images/dashboards.png).
 
 1. On the **Dashboards** page, click the **Qumulo** folder and then click **Cluster Overview**.
 
@@ -136,7 +136,7 @@ This section explains how to verify that Grafana can query Prometheus and displa
 ### Step 7: Configure Grafana Alert Notifications
 This section explains how to configure Grafana alerts to notify you through email, Slack, or an alerting tool.
 
-1. On the left menu, click [screenshot] **Alerting**.
+1. On the left menu, click ![Alerting](images/alerting.png).
 
 1. On the **Alerting** page, click **Contact Points**.
 
