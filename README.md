@@ -44,9 +44,7 @@ Before you begin, ensure that you have the following (or higher) software versio
 
 <a name="create-account"></a>
 ### Step 2: Create a Service Account and Access Token on your Qumulo Clusters
-For this section, follow the guidance in [Working with Qumulo Access Tokens](https://docs.qumulo.com/administrator-guide/qumulo-core/access-tokens.html) on the Qumulo Documentation Portal.
-
-A _bearer token_ is an item in the `Authorization` HTTP header which acts as the authentication mechanism for the Qumulo REST API.
+For this section, follow [Working with Qumulo Access Tokens](https://docs.qumulo.com/administrator-guide/qumulo-core/access-tokens.html) on the Qumulo Documentation Portal.
 
 1. Create a service account.
 
@@ -56,11 +54,13 @@ A _bearer token_ is an item in the `Authorization` HTTP header which acts as the
 
 1. Save the bearer token temporarily.
 
+   <a name="bearer-token"></a>A _bearer token_ is an item in the `Authorization` HTTP header which acts as the authentication mechanism for the Qumulo REST API.
+
 <a name="configure-prometheus"></a>
 ### Step 3: Configure Prometheus
-1. To let Prometheus read metrics from your clusters, update the Prometheus configuration in [`prometheus.yml`](/prometheus/prometheus.yml#L22).
+1. <a name="define-prometheus-yml"></a>To let Prometheus read metrics from your clusters, update the Prometheus configuration in [`prometheus.yml`](/prometheus/prometheus.yml#L22).
 
-   **Note:** Perform the following step for each of your clusters.
+   **⚠️ Important:** Perform the following step for each of your clusters.
 
 1. Into the `scrape_configs` section, copy the `qumulo-cluster` job and fill in the following:
 
@@ -68,7 +68,7 @@ A _bearer token_ is an item in the `Authorization` HTTP header which acts as the
 
    * In the `static_configs` block, for `targets`: A list that contains the cluster's DNS name or IP address.
 
-     **Notes:**
+     **ℹ️ Notes:**
      
      * To specify the port, append `:8000` to the DNS name or IP address.
     
@@ -76,7 +76,7 @@ A _bearer token_ is an item in the `Authorization` HTTP header which acts as the
      
      * To allow monitoring to continue to work if a node goes offline, using floating IP addresses rather than DHCP or static IP addresses.
 
-   * In the `authorization` block, for `credentials`: The bearer token for the service account.
+   * In the `authorization` block, for `credentials`: The [bearer token](#bearer-token) for the service account.
 
    * In the `tls_config` block, for `insecure_skip_verify`: If the Qumulo cluster uses the default, self-signed SSL certificate, set this value to `true`.
 
@@ -98,7 +98,7 @@ This section explains how to verify that Prometheus can gather metrics from your
 
 1. On the top menu bar, select **Status > Targets**.
 
-1. On the **Targets** page, find job name that you previously define in the `prometheus.yml` file and then confirm that that the **State** is **Up**.
+1. On the **Targets** page, find job name [that you defined in the `prometheus.yml` file](#define-prometheus-yml) and then confirm that that the **State** is **Up**.
 
    If the **State** isn't **Up**, check the **Error** column.
    
@@ -150,7 +150,7 @@ This section explains how to configure Grafana alerts to notify you through emai
 
    c. To test the contact point click **Test**.
    
-      **Note:** The test message might take a few minutes to arrive.
+      **ℹ️ Note:** The test message might take a few minutes to arrive.
    
 1. Click **Save contact point**.
 
