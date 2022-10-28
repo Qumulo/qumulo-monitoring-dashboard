@@ -63,7 +63,8 @@ A _bearer token_ is an item in the `Authorization` HTTP header which acts as the
 
    * In the `tls_config` block, for `insecure_skip_verify`: If the Qumulo cluster uses the default, self-signed SSL certificate, set this value to `true`.
 
-### Step 4: Run the Docker Compose Tool
+### Step 4: Start Prometheus and Grafana
+To start Prometheus and Grafana on the Docker host, run the following command. The `-d` flag runs the container in the background.
 
 ```bash
 docker-compose up -d
@@ -74,11 +75,15 @@ This section explains how to verify that Prometheus can gather metrics from your
 
 1. Connect to the Prometheus server at `http://<docker-host-ip>:9090`.
 
-1. At the top of the page, from the menu bar, select **Status > Targets**.
+1. Log in with the `admin` username and `admin` password.
 
-1. In the list, find your **job_name** and confirm that the **State** is **Up**.
+1. On the top menu bar, select **Status > Targets**.
 
-   If **State** isn't **Up**, check the **Error** to determine why. Common problems include:
+1. On the **Targets** page, find job name that you previously define in the `prometheus.yml` file and then confirm that that the **State** is **Up**.
+
+   If the **State** isn't **Up**, check the **Error** column.
+   
+   Common problems include:
 
    * In the `static_configs` block, a mistake in `targets`, in a DNS name or IP address.
 
@@ -86,7 +91,7 @@ This section explains how to verify that Prometheus can gather metrics from your
    
      Test the connection by using the `qq` CLI from that machine.
     
-   * Missing `:8000` port specification in `static_configs` -> `targets`.
+   * In the `static_configs` block, for `targets`, a missing `:8000` port specification.
     
    * In the `tls_config` block `insecure_skip_verify` not set to `true` when using a self-signed SSL certificate on a Qumulo cluster.
 
@@ -97,34 +102,38 @@ This section explains how to verify that Grafana can query Prometheus and displa
 
 1. Log in with the `admin` username and `admin` password.
 
-1. Configure a secure password.
+1. On the **Welcome to Grafana** page, enter a new, secure password and click **Submit**.
 
-1. On the left menu, click **Dashboards**.
+1. On the left menu bar, click [screenshot] **Dashboards**.
 
-1. Under **Qumulo**, click **Cluster Overview**.
+1. On the **Dashboards** page, click the **Qumulo** folder and then click **Cluster Overview**.
 
-1. In the upper-left, in the **cluster** list, click your cluster.
+1. On the **Qumulo / Cluster Overview Page**, next to the **cluster** label filter, select your cluster from the lisut.
 
    Metrics for your cluster begin to populate graphs.
 
 ### Step 7: Configure Grafana Alert Notifications
 This section explains how to configure Grafana alerts to notify you through email, Slack, or an alerting tool.
 
-1. Log in to the Grafana server at `http://<docker-host-ip>:3000`.
+1. On the left menu, click [screenshot] **Alerting**.
 
-1. On the left menu, click **Alertin > Contact Points**.
+1. On the **Alerting** page, click **Contact Points**.
 
-1. Under **Contact Points**, click **New contact point**.
+1. In the **Contact Points** section, on the right,  click **+ New contact point**.
 
-1. Enter a **Name** for the contact point.
+1. On the **New contact point** page, do the following.
 
-1. From the list, click a **Contact point type**.
+   a. Enter a **Name** for the contact point.
+   
+   b. Select a **Contact point type** and fill out the fields that appear depending on the contact point.
 
-1. Complete the form that appears depending on the contact point type that you select.
+   c. To test the contact point click **Test**.
+   
+      **Note:** The test message might take a few minutes to arrive.
+   
+1. Click **Save contact point**.
 
-1. To test the contact point, click **Test** button.
-
-   **Note:** The test message might take a few minutes to arrive.
+   Grafana begins to use the contact point to deliver alerts.
 
 
 ## Updating Your Configuration
@@ -133,7 +142,12 @@ This section explains updating the configuration of the Qumulo Monitoring Dashbo
 ### Updating Prometheus Configuration
 While Prometheus runs, it doesn't apply configuration changes automatically. To reload the configuration, you must do one of the following:
 
-* Stop and restart the container that Prometheus runs in.
+* To stop and restart the container that Prometheus runs in, on your Docker host, run the following commands. The `-d` flag runs the container in the background.
+
+  ```bash
+  docker-compose down
+  docker-compose up -d
+  ```
 
 * Make an HTTP `POST` call by using the following command.
 
