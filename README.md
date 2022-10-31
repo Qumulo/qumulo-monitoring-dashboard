@@ -128,7 +128,7 @@ This section explains how to verify that Grafana can query Prometheus and displa
 
 1. On the **Dashboards** page, click the **Qumulo** folder and then click **Cluster Overview**.
 
-1. On the **Qumulo / Cluster Overview Page**, next to the **cluster** label filter, select your cluster from the lisut.
+1. On the **Qumulo / Cluster Overview Page**, next to the **cluster** label filter, select your cluster from the list.
 
    Metrics for your cluster begin to populate graphs.
 
