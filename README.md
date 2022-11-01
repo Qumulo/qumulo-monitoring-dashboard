@@ -82,7 +82,9 @@ For this section, follow [Working with Qumulo Access Tokens](https://docs.qumulo
 
 <a name="start-prometheus-grafana"></a>
 ### Step 4: Start Prometheus and Grafana
-To start Prometheus and Grafana on the Docker host, run the following command. The `-d` flag runs the container in the background.
+To start Prometheus and Grafana on the Docker host, run the following command.
+
+**Note:** The `-d` flag runs the container in the background.
 
 ```bash
 docker-compose up -d
@@ -164,7 +166,9 @@ This section explains updating the configuration of the Qumulo Monitoring Dashbo
 ### Updating Prometheus Configuration
 While Prometheus runs, it doesn't apply configuration changes automatically. To reload the configuration, you must do one of the following:
 
-* To stop and restart the container that Prometheus runs in, on your Docker host, run the following commands. The `-d` flag runs the container in the background.
+* To stop and restart the container that Prometheus runs in, on your Docker host, run the following commands.
+
+  **Note:** The `-d` flag runs the container in the background.
 
   ```bash
   docker-compose down
