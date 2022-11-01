@@ -175,7 +175,7 @@ While Prometheus runs, it doesn't apply configuration changes automatically. To 
   docker-compose up -d
   ```
 
-* Make an HTTP `POST` call by using the following command.
+* To make an HTTP `POST` call, use the following command.
 
   ```bash
   curl -X POST http://admin:admin@<docker-host-ip>:9090/-/reload
