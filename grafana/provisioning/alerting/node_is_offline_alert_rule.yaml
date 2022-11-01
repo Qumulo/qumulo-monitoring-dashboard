@@ -49,7 +49,7 @@ groups:
         for: 5m
         annotations:
           description: >-
-            Node {{ $$labels.node_id }} is offline. Please verify that the node is powered on and
+            Node {{ $labels.node_id }} is offline. Please verify that the node is powered on and
             its network interfaces are cabled correctly.
         labels:
           severity: critical

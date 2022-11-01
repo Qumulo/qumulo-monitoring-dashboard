@@ -48,7 +48,7 @@ groups:
         for: 5m
         annotations:
           description: >-
-            The {{ $$labels.location }} power supply on node {{ $$labels.node_id }} is unplugged,
+            The {{ $labels.location }} power supply on node {{ $labels.node_id }} is unplugged,
             removed, dead, or otherwise unhealthy. Please connect or replace the power supply as
             soon as possible.
         labels:
