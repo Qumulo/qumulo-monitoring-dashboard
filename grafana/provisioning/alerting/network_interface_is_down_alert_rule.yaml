@@ -48,7 +48,7 @@ groups:
         for: 5m
         annotations:
           description: >-
-            The {{ $$labels.interface }} network interface on node {{ $$labels.node_id }} is down.
+            The {{ $labels.interface }} network interface on node {{ $labels.node_id }} is down.
             Please verify that the network interface is cabled properly.
         labels:
           severity: critical

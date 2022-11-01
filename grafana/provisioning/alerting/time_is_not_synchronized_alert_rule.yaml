@@ -48,7 +48,7 @@ groups:
         for: 1h
         annotations:
           description: >-
-            The time on node {{ $$labels.node_id }} is no longer being synchronized with a time
+            The time on node {{ $labels.node_id }} is no longer being synchronized with a time
             server. Eventually the time may drift. Please verify the node's ability to reach the
             time server.
         labels:

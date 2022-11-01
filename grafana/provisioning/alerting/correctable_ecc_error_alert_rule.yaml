@@ -65,7 +65,7 @@ groups:
         for: 0s
         annotations:
           description: >-
-            There are correctable ECC errors on node {{ $$labels.node_id }}. Repeated or large
+            There are correctable ECC errors on node {{ $labels.node_id }}. Repeated or large
             numbers of correctable ECC error are an indicator that the memory will fail.
         labels:
           severity: warning
