@@ -1,6 +1,8 @@
 # Qumulo Monitoring Dashboard
 This dashboard is a monitoring and alerting solution for Qumulo clusters. This solution uses the Qumulo OpenMetrics API with a [Prometheus](https://prometheus.io/) time-series database and [Grafana](http://grafana.org/) monitoring software and includes a set of dashboards and alerts that you can customize or use as templates.
 
+For detailed information about available metrics, see [Qumulo OpenMetrics API Specification](https://docs.qumulo.com/administrator-guide/qumulo-core/openmetrics-api-specification.html) on the Qumulo Documentation Portal.
+
 **Table of Contents**
 * [Initial Configuration](#initial-configuration)
   * [Prerequisites](#prerequisites)
@@ -41,6 +43,8 @@ Before you begin, ensure that you have the following (or higher) software versio
 
 <a name="create-account"></a>
 ### Step 2: Create a Service Account and Access Token on your Qumulo Clusters
+For this section, follow [Working with Qumulo Access Tokens](https://docs.qumulo.com/administrator-guide/qumulo-core/access-tokens.html) on the Qumulo Documentation Portal.
+
 1. Create a service account.
 
 1. Assign a role with only `PRIVILEGE_METRICS_READ` to the service account.
