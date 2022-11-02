@@ -12,6 +12,55 @@ groups:
         title: CPU temperature is too high
         condition: cpu_too_hot
         data:
+          - refId: cpu_temperature_diff
+            queryType: ''
+            relativeTimeRange:
+              from: 60
+              to: 0
+            datasourceUid: PBFA97CFB590B2093
+            model:
+              editorMode: code
+              expr: qumulo_cpu_max_temperature_celsius - qumulo_cpu_temperature_celsius
+              hide: false
+              intervalMs: 1000
+              legendFormat: __auto
+              maxDataPoints: 43200
+              range: true
+              refId: cpu_temperature_diff
+          - refId: average_cpu_temperature_diff
+            queryType: ''
+            relativeTimeRange:
+              from: 60
+              to: 0
+            datasourceUid: '-100'
+            model:
+              datasource:
+                type: __expr__
+                uid: '-100'
+              expression: cpu_temperature_diff
+              hide: false
+              intervalMs: 1000
+              maxDataPoints: 43200
+              reducer: mean
+              refId: average_cpu_temperature_diff
+              type: reduce
+          - refId: cpu_too_hot
+            queryType: ''
+            relativeTimeRange:
+              from: 600
+              to: 0
+            datasourceUid: '-100'
+            model:
+              datasource:
+                name: Expression
+                type: __expr__
+                uid: __expr__
+              expression: $average_cpu_temperature_diff <= 0
+              hide: false
+              intervalMs: 1000
+              maxDataPoints: 43200
+              refId: cpu_too_hot
+              type: math
           - refId: cpu_temperature
             queryType: ''
             relativeTimeRange:
@@ -19,6 +68,9 @@ groups:
               to: 0
             datasourceUid: PBFA97CFB590B2093
             model:
+              datasource:
+                type: prometheus
+                uid: PBFA97CFB590B2093
               editorMode: builder
               expr: qumulo_cpu_temperature_celsius
               hide: false
@@ -27,27 +79,28 @@ groups:
               maxDataPoints: 43200
               range: true
               refId: cpu_temperature
+          - refId: cpu_temperature_max
+            queryType: ''
+            relativeTimeRange:
+              from: 60
+              to: 0
+            datasourceUid: PBFA97CFB590B2093
+            model:
+              datasource:
+                type: prometheus
+                uid: PBFA97CFB590B2093
+              editorMode: builder
+              expr: qumulo_cpu_max_temperature_celsius
+              hide: false
+              intervalMs: 1000
+              legendFormat: __auto
+              maxDataPoints: 43200
+              range: true
+              refId: cpu_temperature_max
           - refId: average_cpu_temperature
             queryType: ''
             relativeTimeRange:
-              from: 0
-              to: 0
-            datasourceUid: '-100'
-            model:
-              datasource:
-                type: __expr__
-                uid: '-100'
-              expression: cpu_temperature
-              hide: false
-              intervalMs: 1000
-              maxDataPoints: 43200
-              reducer: mean
-              refId: average_cpu_temperature
-              type: reduce
-          - refId: cpu_too_hot
-            queryType: ''
-            relativeTimeRange:
-              from: 0
+              from: 60
               to: 0
             datasourceUid: '-100'
             model:
@@ -55,19 +108,40 @@ groups:
                 name: Expression
                 type: __expr__
                 uid: __expr__
-              expression: ${average_cpu_temperature} > 85
+              expression: cpu_temperature
               hide: false
               intervalMs: 1000
               maxDataPoints: 43200
-              refId: cpu_too_hot
-              type: math
+              reducer: mean
+              refId: average_cpu_temperature
+              type: reduce
+          - refId: average_cpu_temperature_max
+            queryType: ''
+            relativeTimeRange:
+              from: 60
+              to: 0
+            datasourceUid: '-100'
+            model:
+              datasource:
+                name: Expression
+                type: __expr__
+                uid: __expr__
+              expression: cpu_temperature_max
+              hide: false
+              intervalMs: 1000
+              maxDataPoints: 43200
+              reducer: mean
+              refId: average_cpu_temperature_max
+              type: reduce
         noDataState: NoData
         execErrState: Error
         for: 5m
         annotations:
           description: >-
             CPU {{ $labels.cpu }} on node {{ $labels.node_id }} has a temperature of
-            {{ $values.average_cpu_temperature.Value }} C which is over the threshold of 85 C.
+            {{ $values.average_cpu_temperature.Value }} C which is over the
+            threshold of {{ $values.average_cpu_temperature_max.Value }} C.
             Please verify that your cooling systems are functional.
         labels:
           severity: critical
+
