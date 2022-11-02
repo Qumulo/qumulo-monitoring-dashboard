@@ -1,0 +1,69 @@
+version: '2.1'
+
+networks:
+  monitor-net:
+    driver: bridge
+
+volumes:
+    prometheus_data: {}
+    grafana_data: {}
+
+services:
+
+  prometheus:
+    image: prom/prometheus:v2.39.1
+    container_name: prometheus
+    volumes:
+      - ./prometheus:/etc/prometheus
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--web.enable-lifecycle'
+      - '--storage.tsdb.path=/prometheus'
+      - '--storage.tsdb.retention.time=15d'
+
+    restart: unless-stopped
+    expose:
+      - 9090
+    networks:
+      - monitor-net
+    labels:
+      org.label-schema.group: "monitoring"
+
+  grafana:
+    image: grafana/grafana:9.2.2
+    container_name: grafana
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./grafana/provisioning/:/etc/grafana/provisioning/
+    environment:
+      - GF_SECURITY_ADMIN_USER=${ADMIN_USER:-admin}
+      - GF_SECURITY_ADMIN_PASSWORD=${ADMIN_PASSWORD:-admin}
+      - GF_USERS_ALLOW_SIGN_UP=false
+    restart: unless-stopped
+    expose:
+      - 3000
+    networks:
+      - monitor-net
+    labels:
+      org.label-schema.group: "monitoring"
+
+  caddy:
+    image: caddy:2.3.0
+    container_name: caddy
+    ports:
+      - "3000:3000"
+      - "9090:9090"
+    volumes:
+      - ./caddy:/etc/caddy
+    environment:
+      - ADMIN_USER=${ADMIN_USER:-admin}
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD:-admin}
+      - ADMIN_PASSWORD_HASH=${ADMIN_PASSWORD_HASH:-JDJhJDE0JE91S1FrN0Z0VEsyWmhrQVpON1VzdHVLSDkyWHdsN0xNbEZYdnNIZm1pb2d1blg4Y09mL0ZP}
+    restart: unless-stopped
+    networks:
+      - monitor-net
+    labels:
+      org.label-schema.group: "monitoring"

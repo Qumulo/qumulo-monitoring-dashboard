@@ -1,0 +1,71 @@
+# config file version
+apiVersion: 1
+
+# List of rule groups to import or update
+groups:
+  - name: hardware
+    folder: Qumulo
+    interval: 60s
+    rules:
+      - uid: SRP8jOHVz
+        title: Correctable ECC error occurred
+        condition: contains_ecc_errors
+        data:
+          - refId: ecc_error_rate
+            queryType: ''
+            relativeTimeRange:
+              from: 60
+              to: 0
+            datasourceUid: PBFA97CFB590B2093
+            model:
+              editorMode: builder
+              expr: rate(qumulo_memory_correctable_ecc_errors_total[$__rate_interval])
+              hide: false
+              intervalMs: 1000
+              legendFormat: __auto
+              maxDataPoints: 43200
+              range: true
+              refId: ecc_error_rate
+          - refId: max_ecc_error_rate
+            queryType: ''
+            relativeTimeRange:
+              from: 0
+              to: 0
+            datasourceUid: "-100"
+            model:
+              datasource:
+                type: __expr__
+                uid: "-100"
+              expression: ecc_error_rate
+              hide: false
+              intervalMs: 1000
+              maxDataPoints: 43200
+              reducer: max
+              refId: max_ecc_error_rate
+              type: reduce
+          - refId: contains_ecc_errors
+            queryType: ''
+            relativeTimeRange:
+              from: 0
+              to: 0
+            datasourceUid: "-100"
+            model:
+              datasource:
+                name: Expression
+                type: __expr__
+                uid: __expr__
+              expression: "${max_ecc_error_rate} > 0"
+              hide: false
+              intervalMs: 1000
+              maxDataPoints: 43200
+              refId: contains_ecc_errors
+              type: math
+        noDataState: NoData
+        execErrState: Error
+        for: 0s
+        annotations:
+          description: >-
+            There are correctable ECC errors on node {{ $labels.node_id }}. Repeated or large
+            numbers of correctable ECC error are an indicator that the memory will fail.
+        labels:
+          severity: warning

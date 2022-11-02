@@ -1,0 +1,36 @@
+global:
+    # The frequency of scraping data in prometheus. Lower values increase the number of data point
+    # and freshness of data, but at the cost of storage.
+    # If changing this value, update the scrape interval in the Grafana data source as well.
+    scrape_interval: 15s
+    scrape_timeout: 10s
+
+scrape_configs:
+  # Scrape the qumulo cluster for OpenMetrics data.
+  - job_name: 'qumulo-cluster'
+    metrics_path: '/v2/metrics/endpoints/default/data'
+    scheme: https
+
+    # Set targets to the Qumulo cluster's DNS name and port 8000 here. The DNS name should route to
+    # one or more floating IP addresses. The DNS name will appear as a label on the metrics.
+    #
+    # If DNS name is not available, input a floating IP address.
+    #
+    # If floating IPs are not available, input a static/DHCP IP.
+    # Note: If not using floating IP addresses, prometheus will be unable to scrape metrics when the
+    # associated node goes down.
+    static_configs:
+      - targets: ['<DNS name>:8000']
+
+    # Set credentials to an access token for a user with metrics read privileges here.
+    authorization:
+      credentials: 'access-v1:<token data>'
+
+    # If you have not set a SSL credential on the Qumulo cluster, set insecure_skip_verify to true.
+    tls_config:
+      insecure_skip_verify: false
+
+  # Scrape prometheus for OpenMetrics data.
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']

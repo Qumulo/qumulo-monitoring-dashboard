@@ -1,0 +1,55 @@
+# config file version
+apiVersion: 1
+
+# List of rule groups to import or update
+groups:
+  - name: hardware
+    folder: Qumulo
+    interval: 60s
+    rules:
+      - uid: isB3RvNVz
+        title: Power supply is unhealthy
+        condition: power_supply_was_unhealthy
+        data:
+          - refId: power_supply_is_unhealthy
+            queryType: ''
+            relativeTimeRange:
+              from: 60
+              to: 0
+            datasourceUid: PBFA97CFB590B2093
+            model:
+              editorMode: builder
+              expr: qumulo_power_supply_is_unhealthy
+              hide: false
+              intervalMs: 1000
+              legendFormat: __auto
+              maxDataPoints: 43200
+              range: true
+              refId: power_supply_is_unhealthy
+          - refId: power_supply_was_unhealthy
+            queryType: ''
+            relativeTimeRange:
+              from: 0
+              to: 0
+            datasourceUid: '-100'
+            model:
+              datasource:
+                type: __expr__
+                uid: '-100'
+              expression: power_supply_is_unhealthy
+              hide: false
+              intervalMs: 1000
+              maxDataPoints: 43200
+              reducer: max
+              refId: power_supply_was_unhealthy
+              type: reduce
+        noDataState: NoData
+        execErrState: Error
+        for: 5m
+        annotations:
+          description: >-
+            The {{ $labels.location }} power supply on node {{ $labels.node_id }} is unplugged,
+            removed, dead, or otherwise unhealthy. Please connect or replace the power supply as
+            soon as possible.
+        labels:
+          severity: critical
