@@ -24,7 +24,7 @@ scrape_configs:
 
     # Set credentials to an access token for a user with metrics read privileges here.
     authorization:
-        credentials: 'access-v1:<token data>'
+      credentials: 'access-v1:<token data>'
 
     # If you have not set a SSL credential on the Qumulo cluster, set insecure_skip_verify to true.
     tls_config:
