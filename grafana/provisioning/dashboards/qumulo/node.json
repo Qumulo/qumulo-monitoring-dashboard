@@ -462,9 +462,35 @@
           "legendFormat": "node {{node_id}} cpu {{cpu}}",
           "range": true,
           "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "builder",
+          "expr": "min(qumulo_cpu_max_temperature_celsius{instance=~\"$cluster\", node_id=~\"$nodes\"})",
+          "hide": false,
+          "legendFormat": "max temperature",
+          "range": true,
+          "refId": "B"
         }
       ],
       "title": "CPU Temperature",
+      "transformations": [
+        {
+          "id": "configFromData",
+          "options": {
+            "configRefId": "B",
+            "mappings": [
+              {
+                "fieldName": "max temperature",
+                "handlerKey": "threshold1"
+              }
+            ]
+          }
+        }
+      ],
       "type": "timeseries"
     },
     {
@@ -899,7 +925,7 @@
       },
       "gridPos": {
         "h": 7,
-        "w": 24,
+        "w": 6,
         "x": 0,
         "y": 40
       },
@@ -941,7 +967,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 54
+        "y": 47
       },
       "id": 61,
       "panels": [
@@ -1463,8 +1489,8 @@
       {
         "current": {
           "selected": false,
-          "text": "bw13:8000",
-          "value": "bw13:8000"
+          "text": "",
+          "value": ""
         },
         "datasource": {
           "type": "prometheus",
@@ -1528,6 +1554,6 @@
   "timezone": "",
   "title": "Node Overview",
   "uid": "R66fOPnVz",
-  "version": 4,
+  "version": 2,
   "weekStart": ""
 }
