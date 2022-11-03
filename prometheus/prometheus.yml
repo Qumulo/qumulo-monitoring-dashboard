@@ -20,15 +20,15 @@ scrape_configs:
     # Note: If not using floating IP addresses, prometheus will be unable to scrape metrics when the
     # associated node goes down.
     static_configs:
-      - targets: ['bw13:8000']
+      - targets: ['<DNS name>:8000']
 
     # Set credentials to an access token for a user with metrics read privileges here.
     authorization:
-        credentials: 'access-v1:eR5fExqApPye9KgbF3YUgrbL0YQ5VAhAghZ/WihC8g8BAAAA9AEAAAAAAADj2VCh6MX9sqPuYmMAAAAARqdbHA=='
+        credentials: 'access-v1:<token data>'
 
     # If you have not set a SSL credential on the Qumulo cluster, set insecure_skip_verify to true.
     tls_config:
-      insecure_skip_verify: true
+      insecure_skip_verify: false
 
   # Scrape prometheus for OpenMetrics data.
   - job_name: 'prometheus'
