@@ -1,0 +1,58 @@
+# config file version
+apiVersion: 1
+
+# List of rule groups to import or update
+groups:
+  - name: hardware
+    folder: Qumulo
+    interval: 60s
+    rules:
+      - uid: mSqpGgDVz
+        ruleGroup: hardware
+        title: Disk endurance low
+        condition: low_disk_endurance
+        data:
+          - refId: disk_endurance
+            queryType: ''
+            relativeTimeRange:
+              from: 60
+              to: 0
+            datasourceUid: PBFA97CFB590B2093
+            model:
+              editorMode: builder
+              exemplar: false
+              expr: qumulo_disk_endurance_percent
+              hide: false
+              instant: true
+              intervalMs: 1000
+              legendFormat: __auto
+              maxDataPoints: 43200
+              range: false
+              refId: disk_endurance
+          - refId: low_disk_endurance
+            queryType: ''
+            relativeTimeRange:
+              from: 600
+              to: 0
+            datasourceUid: '-100'
+            model:
+              datasource:
+                name: Expression
+                type: __expr__
+                uid: __expr__
+              expression: $disk_endurance < 10
+              hide: false
+              intervalMs: 1000
+              maxDataPoints: 43200
+              refId: low_disk_endurance
+              type: math
+        noDataState: NoData
+        execErrState: Error
+        for: 5m
+        annotations:
+          description: >-
+            The {{ $labels.disk_type }} at drive bay {{ $labels.drive_bay }} on node
+            {{ $labels.node_id }} has less than 10% disk endurance remaining. Please
+            consider replacing this disk soon.
+        labels:
+          severity: warning
