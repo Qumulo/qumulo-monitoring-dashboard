@@ -52,7 +52,7 @@ groups:
         annotations:
           description: >-    
             Disk {{ $labels.disk_type }} in drive bay {{ $labels.drive_bay }} on node
-            {{ $labels.node_id }} has less than 20% disk endurance remaining. Consider
-            replacing this disk soon.
+            {{ $labels.node_id }} has less than 20% disk endurance remaining. Replace
+            this disk as soon as possible.
         labels:
           severity: warning
