@@ -176,7 +176,7 @@ While Prometheus runs, it doesn't apply configuration changes automatically. To 
 * To make an HTTP `POST` call, use the `curl` command. For example:
 
   ```bash
-  curl -X POST http://admin:admin@<docker-host-ip>:9090/-/reload
+  curl -X POST http://admin:admin@203.0.113.1:9090/-/reload
   ```
 
 <a name="updating-grafana-configuration"></a>
