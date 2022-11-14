@@ -1,4 +1,4 @@
-# config file version
+# Configuration file version
 apiVersion: 1
 
 # List of rule groups to import or update
@@ -8,7 +8,7 @@ groups:
     interval: 60s
     rules:
       - uid: SRP8jOHVz
-        title: Correctable ECC error occurred
+        title: Correctable ECC errors have occurred
         condition: contains_ecc_errors
         data:
           - refId: ecc_error_rate
@@ -65,7 +65,8 @@ groups:
         for: 0s
         annotations:
           description: >-
-            There are correctable ECC errors on node {{ $labels.node_id }}. Repeated or large
-            numbers of correctable ECC error are an indicator that the memory will fail.
+            Node {{ $labels.node_id }} has correctable ECC errors. Typically, a repeated
+            or large number of correctable ECC errors is an indicator of imminent memory
+            failure.
         labels:
           severity: warning
