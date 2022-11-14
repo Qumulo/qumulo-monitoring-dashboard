@@ -129,9 +129,10 @@ groups:
           __dashboardUid__: isJoSTGVz
           __panelId__: '22'
           description: >-
-            The cluster {{ $values.info.Labels.name }} has
+            Cluster {{ $values.info.Labels.name }} has
             {{ humanizePercentage $values.mean_percent_free.Value }}
             ({{ humanize $values.mean_free.Value }}) remaining capacity, which is below the
-            threshold of 10%. Consider expanding capacity soon.
+            threshold of 10%. We strongly recommend expanding your cluster capacity as soon
+            as possible.
         labels:
           severity: warning
