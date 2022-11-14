@@ -49,6 +49,6 @@ groups:
         annotations:
           description: >-
             NIC {{ $labels.interface }} on node {{ $labels.node_id }} is offline. Verify
-            that the NIC is connected to your network orrectly.
+            that the NIC is connected to your network correctly.
         labels:
           severity: critical
