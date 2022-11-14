@@ -183,7 +183,7 @@ While Prometheus runs, it doesn't apply configuration changes automatically. To 
 ### Updating Your Grafana Configuration
 This section explains how to update the Grafana configuration for your system. To update the built-in Grafana alerts, you must modify their configuration files. To create new alerts, use the Grafana web UI.
 
-**Important:** Because the functionality of certain vendors' disks degrades before reaching 0% endurance, by default, the `low_disk_endurance` alert notifies when 20% endurance remains.
+**Important:** Because the functionality of certain vendors' disks degrades before reaching 0% endurance, by default, the **Disk endurance low** (`low_disk_endurance`) alert notifies when 20% endurance remains. For endurance information, check your disks' vendor documentation.
 
 For information about working with Grafana dashboards, see [Create a dashboard](https://grafana.com/docs/grafana/latest/getting-started/build-first-dashboard/#create-a-dashboard) in the Grafana documentation.
 
