@@ -8,7 +8,7 @@ groups:
     interval: 60s
     rules:
       - uid: Ut0U6HH4k
-        title: Time is not synchonized
+        title: Node time isn't synchonizing
         condition: time_was_not_synchronized
         data:
           - refId: time_is_not_synchronized
@@ -48,8 +48,8 @@ groups:
         for: 1h
         annotations:
           description: >-
-            The time on node {{ $labels.node_id }} is no longer being synchronized with a time
-            server. Eventually the time may drift. Please verify the node's ability to reach the
-            time server.
+            The time on node {{ $labels.node_id }} isn't synchronizing with a time server.
+            Because this eventually causes a time drift, we recommend verifying your node's
+            ability to communicate with the time server.
         labels:
           severity: warning
