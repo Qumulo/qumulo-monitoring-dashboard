@@ -132,7 +132,6 @@ groups:
             Cluster {{ $values.info.Labels.name }} has
             {{ humanizePercentage $values.mean_percent_free.Value }}
             ({{ humanize $values.mean_free.Value }}) remaining capacity. This value is below
-            the threshold of 10%. We strongly recommend expanding your cluster capacity as 
-            soon as possible.
+            the threshold of 10%. Expand your cluster capacity as soon as possible.
         labels:
           severity: warning
