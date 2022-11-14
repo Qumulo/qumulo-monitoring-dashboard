@@ -11,9 +11,9 @@ This dashboard is a monitoring and alerting solution for Qumulo clusters. This s
   * [Step 5: Verify Your Prometheus Configuration](#verify-prometheus-configuration)
   * [Step 6: Verify Your Grafana Configuration](#verify-grafana-configuration)
   * [Step 7: Configure Grafana Alert Notifications](#configure-grafana-alerts)
-* [Updating Qumulo Monitoring Dashboard Configuration Configuration](#updating-configuration)
-  * [Updating Prometheus Configuration](#updating-prometheus-configuration)
-  * [Updating Grafana Configuration](#updating-grafana-configuration) 
+* [Updating Your Qumulo Monitoring Dashboard Configuration](#updating-configuration)
+  * [Updating Your Prometheus Configuration](#updating-prometheus-configuration)
+  * [Updating Your Grafana Configuration](#updating-grafana-configuration) 
 
 <a name="initial-configuration"></a>
 ## Initial Configuration
@@ -155,14 +155,16 @@ This section explains how to configure Grafana alerts to notify you through emai
    Grafana begins to use the contact point to deliver alerts.
 
 <a name="updating-configuration"></a>
-## Updating Qumulo Monitoring Dashboard Configuration
-This section explains updating the configuration of the Qumulo Monitoring Dashboard.
+## Updating Your Qumulo Monitoring Dashboard Configuration
+This section explains how to update the configuration of the Qumulo Monitoring Dashboard for your system.
 
 <a name="updating-prometheus-configuration"></a>
-### Updating Prometheus Configuration
+### Updating Your Prometheus Configuration
+This section explains how to update the Prometheus configuration for your system.
+
 While Prometheus runs, it doesn't apply configuration changes automatically. To reload the configuration, you must do one of the following:
 
-* To stop and restart the container that Prometheus runs in, on your Docker host, run the following commands.
+* To stop and restart the container in which Prometheus runs on your Docker host, run the following commands.
 
   **Note:** The `-d` flag runs the container in the background.
 
@@ -171,23 +173,23 @@ While Prometheus runs, it doesn't apply configuration changes automatically. To 
   docker-compose up -d
   ```
 
-* To make an HTTP `POST` call, use the following command.
+* To make an HTTP `POST` call, use the `curl` command. For example:
 
   ```bash
   curl -X POST http://admin:admin@<docker-host-ip>:9090/-/reload
   ```
 
 <a name="updating-grafana-configuration"></a>
-### Updating Grafana Configuration
-#### Dashboards
-Grafana dashboards can be updated from the UI.
+### Updating Your Grafana Configuration
+This section explains how to update the Grafana configuration for your system. To update the built-in Grafana alerts, you must modify their configuration files. To create new alerts, use the Grafana web UI.
 
-#### Alerts
-The built in grafana alerts must be updated by modifying their configuration files. New alerts can be created and updated from the UI.
+**Important:** Because the functionality of certain vendors' disks degrades before reaching 0% endurance, by default, the `low_disk_endurance` alert notifies when 20% endurance remains.
+
+For information about working with Grafana dashboards, see [Create a dashboard](https://grafana.com/docs/grafana/latest/getting-started/build-first-dashboard/#create-a-dashboard) in the Grafana documentation.
 
 While Grafana runs, it doesn't apply alert configuration changes automatically. To reload the configuration, you must do one of the following:
 
-* To stop and restart the container that Prometheus runs in, on your Docker host, run the following commands.
+* To stop and restart the container in which Grafana runs on your Docker host, run the following commands.
 
   **Note:** The `-d` flag runs the container in the background.
 
@@ -196,11 +198,8 @@ While Grafana runs, it doesn't apply alert configuration changes automatically. 
   docker-compose up -d
   ```
 
-* To make an HTTP `POST` call, use the following command.
+* To make an HTTP `POST` call, use the `curl` command. For example:
 
   ```bash
-  curl -X POST --user admin:<password> http://<docker-host-ip>:3000/api/admin/provisioning/alerting/reload
+  curl -X POST --user admin:admin http://203.0.113.1:3000/api/admin/provisioning/alerting/reload
   ```
-
-##### Disk Endurance
-The disk endurance alert is initially set to notify at 20% remaining endurance. This is because some vendor's disks degrade functionality before 0% is reached. Please consult your vendor for the appropriate threshold for their disks.
