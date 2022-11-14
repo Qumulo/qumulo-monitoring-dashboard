@@ -40,7 +40,7 @@ groups:
                 name: Expression
                 type: __expr__
                 uid: __expr__
-              expression: $disk_endurance < 10
+              expression: $disk_endurance < 20
               hide: false
               intervalMs: 1000
               maxDataPoints: 43200
@@ -52,7 +52,7 @@ groups:
         annotations:
           description: >-
             The {{ $labels.disk_type }} at drive bay {{ $labels.drive_bay }} on node
-            {{ $labels.node_id }} has less than 10% disk endurance remaining. Please
+            {{ $labels.node_id }} has less than 20% disk endurance remaining. Please
             consider replacing this disk soon.
         labels:
           severity: warning
