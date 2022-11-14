@@ -49,7 +49,7 @@ groups:
         for: 5m
         annotations:
           description: >-
-            Node {{ $labels.node_id }} is offline. Please verify that the node is powered on and
-            its network interfaces are cabled correctly.
+            Node {{ $labels.node_id }} is offline. Verify that power is connected to the
+            node, that the node is powered on, and that its NICs are connected correctly.
         labels:
           severity: critical
