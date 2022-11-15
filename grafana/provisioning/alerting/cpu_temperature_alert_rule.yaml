@@ -141,6 +141,6 @@ groups:
             CPU {{ $labels.cpu }} on node {{ $labels.node_id }} has a temperature of
             {{ $values.average_cpu_temperature.Value }} °C. This value is over the
             threshold of {{ $values.average_cpu_temperature_max.Value }} °C.
-            Verify that the cooling systems on your node are functioning correctly.
+            Verify that cooling systems are functioning correctly.
         labels:
           severity: critical
