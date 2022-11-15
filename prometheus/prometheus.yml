@@ -1,8 +1,7 @@
 global:
-    # The frequency of scraping data in Prometheus. Lower values increase the 
-    # number of data points and data freshness, at the cost of storage.
-    # If you change this value, also update the scrape interval in the Grafana 
-    # data source.
+    # The frequency of scraping data in Prometheus. Lower values increase the number of data points 
+    # and data freshness, at the cost of storage. If you change this value, also update the scrape 
+    # interval in the Grafana data source.
     scrape_interval: 15s
     scrape_timeout: 10s
 
@@ -12,26 +11,24 @@ scrape_configs:
     metrics_path: '/v2/metrics/endpoints/default/data'
     scheme: https
 
-    # Set targets to the Qumulo cluster DNS name and port 8000. The DNS name
-    # should route to one or more floating IP addresses. The DNS name appears 
-    # as a label on metrics.
+    # Set targets to the Qumulo cluster DNS name and port 8000. The DNS name should route to one or 
+    # more floating IP addresses. The DNS name appears as a label on metrics.
     #
     # If a DNS name is unavailable, specify a floating IP address.
     #
     # If floating IPs are unavailable, specify a static or DHCP IP address.
     #
-    # Note: If you don't use floating IP addresses, Prometheus won't be able to
-    # scrape metrics when the associated node becomes unavailable.
+    # Note: If you don't use floating IP addresses, Prometheus won't be able to scrape metrics when 
+    # the associated node becomes unavailable.
     static_configs:
       - targets: ['<DNS name>:8000']
 
-    # Set credentials to an access token for a user with read privileges for
-    # metrics.
+    # Set credentials to an access token for a user with read privileges for metrics.
     authorization:
       credentials: 'access-v1:<token data>'
 
-    # If you haven't configured an SSL credential on your Qumulo cluster, 
-    # set `insecure_skip_verify` to `true`.
+    # If you haven't configured an SSL credential on your Qumulo cluster, set `insecure_skip_verify` 
+    # to `true`.
     tls_config:
       insecure_skip_verify: false
 
