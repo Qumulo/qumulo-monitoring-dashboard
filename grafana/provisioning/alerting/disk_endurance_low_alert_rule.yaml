@@ -50,9 +50,9 @@ groups:
         execErrState: Error
         for: 5m
         annotations:
-          description: >-
-            The {{ $labels.disk_type }} at drive bay {{ $labels.drive_bay }} on node
-            {{ $labels.node_id }} has less than 20% disk endurance remaining. Please
-            consider replacing this disk soon.
+          description: >-    
+            Disk {{ $labels.disk_type }} in drive bay {{ $labels.drive_bay }} on node
+            {{ $labels.node_id }} has less than 20% disk endurance remaining.
+            Consider replacing this disk.
         labels:
           severity: warning

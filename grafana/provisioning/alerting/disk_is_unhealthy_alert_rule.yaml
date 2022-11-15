@@ -49,9 +49,9 @@ groups:
         execErrState: Error
         for: 5m
         annotations:
-          description: >-
-            The {{ $labels.disk_type }} at drive bay {{ $labels.drive_bay }} on node
-            {{ $labels.node_id }} has errors, has been removed from the cluster, or is otherwise
-            unusable. Please replace the disk as soon as possible.
+          description: >-    
+            Disk {{ $labels.disk_type }} in drive bay {{ $labels.drive_bay }} on node
+            {{ $labels.node_id }} has errors, has been removed from the node, or is
+            unusable. Replace this disk as soon as possible.
         labels:
           severity: critical

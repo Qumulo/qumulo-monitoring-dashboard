@@ -8,7 +8,7 @@ groups:
     interval: 60s
     rules:
       - uid: ZZRA3dN4k
-        title: Network interface is down
+        title: Network interface is offline
         condition: network_was_down
         data:
           - refId: network_is_down
@@ -48,7 +48,7 @@ groups:
         for: 5m
         annotations:
           description: >-
-            The {{ $labels.interface }} network interface on node {{ $labels.node_id }} is down.
-            Please verify that the network interface is cabled properly.
+            NIC {{ $labels.interface }} on node {{ $labels.node_id }} is offline. Verify
+            that the NIC is connected to your network correctly.
         labels:
           severity: critical

@@ -139,9 +139,8 @@ groups:
         annotations:
           description: >-
             CPU {{ $labels.cpu }} on node {{ $labels.node_id }} has a temperature of
-            {{ $values.average_cpu_temperature.Value }} C which is over the
-            threshold of {{ $values.average_cpu_temperature_max.Value }} C.
-            Please verify that your cooling systems are functional.
+            {{ $values.average_cpu_temperature.Value }} °C. This value is over the
+            threshold of {{ $values.average_cpu_temperature_max.Value }} °C.
+            Verify that cooling systems are functioning correctly.
         labels:
           severity: critical
-

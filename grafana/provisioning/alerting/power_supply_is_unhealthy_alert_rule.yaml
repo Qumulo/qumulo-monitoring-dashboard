@@ -48,8 +48,8 @@ groups:
         for: 5m
         annotations:
           description: >-
-            The {{ $labels.location }} power supply on node {{ $labels.node_id }} is unplugged,
-            removed, dead, or otherwise unhealthy. Please connect or replace the power supply as
-            soon as possible.
+            PSU {{ $labels.location }} in node {{ $labels.node_id }} is disconnected, has
+            been removed from the node, is malfunctioning, or is unhealthy. Connect the PSU
+            correctly or replace it as soon as possible.
         labels:
           severity: critical
