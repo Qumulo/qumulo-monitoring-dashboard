@@ -8,7 +8,7 @@ groups:
     interval: 60s
     rules:
       - uid: WIrA8dHVz
-        title: Fan has stopped
+        title: Fan isn't running
         condition: fan_has_stopped
         data:
           - refId: fan_speed
@@ -65,7 +65,7 @@ groups:
         for: 5m
         annotations:
           description: >- 
-            Fan {{ $labels.fan }} on node {{ $labels.node_id }} has stopped. Replace this
-            fan as soon as possible.
+            Fan {{ $labels.fan }} on node {{ $labels.node_id }} isn't running. Replace
+            this fan as soon as possible.
         labels:
           severity: critical
