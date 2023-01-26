@@ -17,11 +17,11 @@ For detailed information about available metrics, see [Qumulo OpenMetrics API Sp
   * [Updating Your Prometheus Configuration](#updating-prometheus-configuration)
   * [Updating Your Grafana Configuration](#updating-grafana-configuration) 
 
-<a name="initial-configuration"></a>
+<a id="initial-configuration"></a>
 ## Initial Configuration
 This section explains the initial configuration of the Qumulo Monitoring Dashboard.
 
-<a name="prerequisites"></a>
+<a id="prerequisites"></a>
 ### Prerequisites
 Before you begin, ensure that you have the following (or higher) software versions:
 
@@ -29,7 +29,7 @@ Before you begin, ensure that you have the following (or higher) software versio
 * Docker Compose 1.11
 * Qumulo Core 5.3.0
 
-<a name="clone-repository"></a>
+<a id="clone-repository"></a>
 ### Step 1: Clone This Repository to Your Docker Host
 
 1. Log in to your Docker host.
@@ -42,7 +42,7 @@ Before you begin, ensure that you have the following (or higher) software versio
 
 1. Navigate to the `qumulo-monitoring-dashboard` directory.
 
-<a name="create-account"></a>
+<a id="create-account"></a>
 ### Step 2: Create a Service Account and Access Token on your Qumulo Clusters
 For this section, follow [Working with Qumulo Access Tokens](https://docs.qumulo.com/administrator-guide/external-services/using-access-tokens.html) on the Qumulo Documentation Portal.
 
@@ -54,11 +54,11 @@ For this section, follow [Working with Qumulo Access Tokens](https://docs.qumulo
 
 1. Save the bearer token temporarily.
 
-   <a name="bearer-token"></a>A _bearer token_ is an item in the `Authorization` HTTP header which acts as the authentication mechanism for the Qumulo REST API.
+   <a id="bearer-token"></a>A _bearer token_ is an item in the `Authorization` HTTP header which acts as the authentication mechanism for the Qumulo REST API.
 
-<a name="configure-prometheus"></a>
+<a id="configure-prometheus"></a>
 ### Step 3: Configure Prometheus
-1. <a name="define-prometheus-yml"></a>To let Prometheus read metrics from your clusters, update the Prometheus configuration in [`prometheus.yml`](/prometheus/prometheus.yml#L22).
+1. <a id="define-prometheus-yml"></a>To let Prometheus read metrics from your clusters, update the Prometheus configuration in [`prometheus.yml`](/prometheus/prometheus.yml#L22).
 
    **⚠️ Important:** Perform the following step for each of your clusters.
 
@@ -80,17 +80,55 @@ For this section, follow [Working with Qumulo Access Tokens](https://docs.qumulo
 
    * In the `tls_config` block, for `insecure_skip_verify`: If the Qumulo cluster uses the default, self-signed SSL certificate, set this value to `true`.
 
-<a name="start-prometheus-grafana"></a>
+1. (Optional) Before you start Prometheus and Grafana, change the default administrator credentials.
+
+   a. Open the [`docker-compose.yml`](/docker-compose.yml#L62) file for editing.
+
+   b. For `ADMIN_USER` and `ADMIN_PASSWORD`, specify credentials that conform to your security policies.
+   
+     **⚠️ Important:** If you don't specify values, Docker uses the default values.
+   
+   c. For `ADMIN_PASSWORD_HASH`, specify the password hash. To [generate the hash for your password](https://caddyserver.com/docs/command-line#caddy-hash-password), use the `caddy` CLI tool.
+   
+     **ℹ️ Note:** Install [the version of `caddy`](https://caddyserver.com/docs/install) that matches the version of the container that the Qumulo Monitoring Dashboard uses (2.6.2).
+   
+   d. You can set your three credentials as environment variables:
+
+      * On Linux:
+      
+        i. To set the environment variables, use the `export` command.
+      
+           ```bash
+           export ADMIN_USER='<username>'
+           export ADMIN_PASSWORD='<password>'
+           export ADMIN_PASSWORD_HASH='<password-hash>'
+           ```
+           
+        ii. To verify the environment variables, use the `printenv` command.
+      
+      * On Windows:
+      
+        i. To set the environment variables, use the `setx` command.
+      
+           ```powershell
+           setx ADMIN_USER "<username>"
+           setx ADMIN_PASSWORD <password>
+           setx ADMIN_PASSWORD_HASH <password-hash>
+           ```
+           
+        ii. To verify the environment variables, use the `set` command.
+        
+<a id="start-prometheus-grafana"></a>
 ### Step 4: Start Prometheus and Grafana
 To start Prometheus and Grafana on the Docker host, run the following command.
 
-**Note:** The `-d` flag runs the container in the background.
+**ℹ️ Note:** The `-d` flag runs the container in the background.
 
 ```bash
 docker-compose up -d
 ```
 
-<a name="verify-prometheus-configuration"></a>
+<a id="verify-prometheus-configuration"></a>
 ### Step 5: Verify Your Prometheus Configuration
 This section explains how to verify that Prometheus can gather metrics from your Qumulo clusters.
 
@@ -116,7 +154,7 @@ This section explains how to verify that Prometheus can gather metrics from your
     
    * In the `tls_config` block `insecure_skip_verify` not set to `true` when using a self-signed SSL certificate on a Qumulo cluster.
 
-<a name="verify-grafana-configuration"></a>
+<a id="verify-grafana-configuration"></a>
 ### Step 6: Verify Your Grafana Configuration
 This section explains how to verify that Grafana can query Prometheus and display metrics:
 
@@ -134,7 +172,7 @@ This section explains how to verify that Grafana can query Prometheus and displa
 
    Metrics for your cluster begin to populate graphs.
 
-<a name="configure-grafana-alerts"></a>
+<a id="configure-grafana-alerts"></a>
 ### Step 7: Configure Grafana Alert Notifications
 This section explains how to configure Grafana alerts to notify you through email, Slack, or an alerting tool.
 
@@ -158,11 +196,11 @@ This section explains how to configure Grafana alerts to notify you through emai
 
    Grafana begins to use the contact point to deliver alerts.
 
-<a name="updating-configuration"></a>
+<a id="updating-configuration"></a>
 ## Updating Your Qumulo Monitoring Dashboard Configuration
 This section explains how to update the configuration of the Qumulo Monitoring Dashboard for your system.
 
-<a name="updating-prometheus-configuration"></a>
+<a id="updating-prometheus-configuration"></a>
 ### Updating Your Prometheus Configuration
 This section explains how to update the Prometheus configuration for your system.
 
@@ -170,7 +208,7 @@ While Prometheus runs, it doesn't apply configuration changes automatically. To 
 
 * To stop and restart the container in which Prometheus runs on your Docker host, run the following commands.
 
-  **Note:** The `-d` flag runs the container in the background.
+  **ℹ️ Note:** The `-d` flag runs the container in the background.
 
   ```bash
   docker-compose down
@@ -183,11 +221,11 @@ While Prometheus runs, it doesn't apply configuration changes automatically. To 
   curl -X POST http://admin:admin@203.0.113.1:9090/-/reload
   ```
 
-<a name="updating-grafana-configuration"></a>
+<a id="updating-grafana-configuration"></a>
 ### Updating Your Grafana Configuration
 This section explains how to update the Grafana configuration for your system. To update the built-in Grafana alerts, you must modify their configuration files. To create new alerts, use the Grafana web UI.
 
-**Important:** Because the functionality of certain vendors' disks degrades before reaching 0% endurance, by default, the **Disk endurance low** (`low_disk_endurance`) alert notifies when 20% endurance remains. For endurance information, check your disks' vendor documentation.
+**⚠️ Important:** Because the functionality of certain vendors' disks degrades before reaching 0% endurance, by default, the **Disk endurance low** (`low_disk_endurance`) alert notifies when 20% endurance remains. For endurance information, check your disks' vendor documentation.
 
 For information about working with Grafana dashboards, see [Create a dashboard](https://grafana.com/docs/grafana/latest/getting-started/build-first-dashboard/#create-a-dashboard) in the Grafana documentation.
 
@@ -195,7 +233,7 @@ While Grafana runs, it doesn't apply alert configuration changes automatically. 
 
 * To stop and restart the container in which Grafana runs on your Docker host, run the following commands.
 
-  **Note:** The `-d` flag runs the container in the background.
+  **ℹ️ Note:** The `-d` flag runs the container in the background.
 
   ```bash
   docker-compose down
