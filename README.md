@@ -80,43 +80,39 @@ For this section, follow [Working with Qumulo Access Tokens](https://docs.qumulo
 
    * In the `tls_config` block, for `insecure_skip_verify`: If the Qumulo cluster uses the default, self-signed SSL certificate, set this value to `true`.
 
-1. (Optional) Before you start Prometheus and Grafana, change the default administrator credentials.
+1. (Optional) Before you start Prometheus and Grafana, change the default administrator credentials in [`docker-compose.yml`](/docker-compose.yml#L62).
 
-   a. Open the [`docker-compose.yml`](/docker-compose.yml#L62) file for editing.
+   * For `ADMIN_USER` and `ADMIN_PASSWORD`, specify credentials that conform to your security policies.
+   
+     **⚠️ Important:** If you don't specify your credentials, Docker uses the default values.
+   
+   * For `ADMIN_PASSWORD_HASH`, specify the password hash. To [generate the hash for your password](https://caddyserver.com/docs/command-line#caddy-hash-password), install and run [the version of `caddy`](https://caddyserver.com/docs/install) that matches the version of the container that the Qumulo Monitoring Dashboard uses (2.6.2).
+   
+   **ℹ️ Note:**  Alternatively, you can set your credentials as environment variables:
 
-   b. For `ADMIN_USER` and `ADMIN_PASSWORD`, specify credentials that conform to your security policies.
-   
-     **⚠️ Important:** If you don't specify values, Docker uses the default values.
-   
-   c. For `ADMIN_PASSWORD_HASH`, specify the password hash. To [generate the hash for your password](https://caddyserver.com/docs/command-line#caddy-hash-password), use the `caddy` CLI tool.
-   
-     **ℹ️ Note:** Install [the version of `caddy`](https://caddyserver.com/docs/install) that matches the version of the container that the Qumulo Monitoring Dashboard uses (2.6.2).
-   
-   d. You can set your three credentials as environment variables:
-
-      * On Linux:
+   * On Linux:
       
-        i. To set the environment variables, use the `export` command.
+     a. To set the environment variables, use the `export` command.
       
-           ```bash
-           export ADMIN_USER='<username>'
-           export ADMIN_PASSWORD='<password>'
-           export ADMIN_PASSWORD_HASH='<password-hash>'
-           ```
+        ```bash
+        export ADMIN_USER='<username>'
+        export ADMIN_PASSWORD='<password>'
+        export ADMIN_PASSWORD_HASH='<password-hash>'
+        ```
            
-        ii. To verify the environment variables, use the `printenv` command.
+     b. To verify the environment variables, use the `printenv` command.
       
-      * On Windows:
+   * On Windows:
       
-        i. To set the environment variables, use the `setx` command.
+     a. To set the environment variables, use the `setx` command.
       
-           ```powershell
-           setx ADMIN_USER "<username>"
-           setx ADMIN_PASSWORD <password>
-           setx ADMIN_PASSWORD_HASH <password-hash>
-           ```
+        ```powershell
+        setx ADMIN_USER "<username>"
+        setx ADMIN_PASSWORD <password>
+        setx ADMIN_PASSWORD_HASH <password-hash>
+        ```
            
-        ii. To verify the environment variables, use the `set` command.
+     b. To verify the environment variables, use the `set` command.
         
 <a id="start-prometheus-grafana"></a>
 ### Step 4: Start Prometheus and Grafana
