@@ -80,6 +80,37 @@ For this section, follow [Working with Qumulo Access Tokens](https://docs.qumulo
 
    * In the `tls_config` block, for `insecure_skip_verify`: If the Qumulo cluster uses the default, self-signed SSL certificate, set this value to `true`.
 
+1. Optionally change the default username/password you use to log into the Prometheus/Grafana server(s):
+
+   * The passwords are set using the [`docker-compose.yml`](/docker-compose.yml#L62) file and use the defaults in there if you do not set the appropriate environment variables: ADMIN_USER, ADMIN_PASSWORD, ADMIN_PASSWORD_HASH before you run Step 4.
+
+   * Choose appropriate username and password that conforms to your security policies.
+
+   * In-addition you would also need a password hash generated for the password you chose above using caddy command-line tool as explained @ https://caddyserver.com/docs/command-line#caddy-hash-password. Ensure you are installing the the correct version from https://caddyserver.com/docs/install matching the container version we are currently using (2.6.2)
+   
+   * Once you have the username, password and password-hash, you can set the appropriate environment variables as shown below:
+      Linux:
+      ```bash
+      export ADMIN_USER='<username>'
+      export ADMIN_PASSWORD='<password>'
+      export ADMIN_PASSWORD_HASH='<password-hash>'
+      ```
+      Windows:
+      ```powershell
+      setx ADMIN_USER "<username>"
+      setx ADMIN_PASSWORD <password>
+      setx ADMIN_PASSWORD_HASH <password-hash>
+      ```
+   * Validate that the three environment variables you created above are infact present and with appropriate values using the following:
+      Linux:
+      ```bash
+      printenv
+      ```
+      Windows:
+      ```powershell
+      set
+      ```
+
 <a name="start-prometheus-grafana"></a>
 ### Step 4: Start Prometheus and Grafana
 To start Prometheus and Grafana on the Docker host, run the following command.
