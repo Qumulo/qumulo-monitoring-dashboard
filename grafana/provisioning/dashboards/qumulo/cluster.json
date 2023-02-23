@@ -440,7 +440,7 @@
           "calcs": [
             "lastNotNull"
           ],
-          "fields": "/^max_disk_failures$/",
+          "fields": "/^max_drive_failures$/",
           "values": false
         },
         "textMode": "auto"
@@ -460,7 +460,7 @@
           "refId": "A"
         }
       ],
-      "title": "Max Disk Failures",
+      "title": "Max Drive Failures",
       "type": "stat"
     },
     {
@@ -2348,6 +2348,6 @@
   "timezone": "",
   "title": "Cluster Overview",
   "uid": "isJoSTGVz",
-  "version": 3,
+  "version": 5,
   "weekStart": ""
 }
