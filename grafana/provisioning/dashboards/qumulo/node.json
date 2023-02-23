@@ -31,7 +31,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
+        "uid": "${datasource}"
       },
       "fieldConfig": {
         "defaults": {
@@ -57,7 +57,7 @@
         "x": 0,
         "y": 0
       },
-      "id": 53,
+      "id": 77,
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -78,7 +78,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${datasource}"
           },
           "editorMode": "builder",
           "expr": "qumulo_info{instance=~\"$cluster\"}",
@@ -94,7 +94,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
+        "uid": "${datasource}"
       },
       "fieldConfig": {
         "defaults": {
@@ -140,7 +140,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${datasource}"
           },
           "editorMode": "builder",
           "expr": "qumulo_info{instance=~\"$cluster\"}",
@@ -156,7 +156,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
+        "uid": "${datasource}"
       },
       "fieldConfig": {
         "defaults": {
@@ -202,7 +202,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${datasource}"
           },
           "editorMode": "builder",
           "expr": "qumulo_info{instance=~\"$cluster\"}",
@@ -218,7 +218,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
+        "uid": "${datasource}"
       },
       "description": "",
       "fieldConfig": {
@@ -295,7 +295,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${datasource}"
           },
           "editorMode": "builder",
           "exemplar": true,
@@ -314,7 +314,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
+        "uid": "${datasource}"
       },
       "fieldConfig": {
         "defaults": {
@@ -360,7 +360,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${datasource}"
           },
           "editorMode": "builder",
           "expr": "qumulo_info{instance=~\"$cluster\"}",
@@ -376,7 +376,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
+        "uid": "${datasource}"
       },
       "fieldConfig": {
         "defaults": {
@@ -422,7 +422,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${datasource}"
           },
           "editorMode": "builder",
           "expr": "qumulo_info{instance=~\"$cluster\"}",
@@ -438,7 +438,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
+        "uid": "${datasource}"
       },
       "fieldConfig": {
         "defaults": {
@@ -484,7 +484,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${datasource}"
           },
           "editorMode": "builder",
           "expr": "qumulo_info{instance=~\"$cluster\"}",
@@ -500,7 +500,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
+        "uid": "${datasource}"
       },
       "fieldConfig": {
         "defaults": {
@@ -546,7 +546,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${datasource}"
           },
           "editorMode": "builder",
           "expr": "qumulo_info{instance=~\"$cluster\"}",
@@ -562,7 +562,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
+        "uid": "${datasource}"
       },
       "fieldConfig": {
         "defaults": {
@@ -589,7 +589,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 4,
+        "h": 3,
         "w": 20,
         "x": 0,
         "y": 4
@@ -614,7 +614,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${datasource}"
           },
           "editorMode": "builder",
           "expr": "qumulo_node_info{instance=~\"$cluster\"}",
@@ -630,7 +630,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
+        "uid": "${datasource}"
       },
       "fieldConfig": {
         "defaults": {
@@ -658,7 +658,7 @@
         "h": 4,
         "w": 20,
         "x": 0,
-        "y": 8
+        "y": 7
       },
       "id": 55,
       "options": {
@@ -680,10 +680,10 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${datasource}"
           },
           "editorMode": "builder",
-          "expr": "qumulo_quorum_node_is_offline{instance=~\"$cluster\"}",
+          "expr": "qumulo_quorum_node_is_offline{instance=~\"$cluster\", node_id=~\"$nodes\"}",
           "format": "heatmap",
           "legendFormat": "node {{node_id}}",
           "range": true,
@@ -696,7 +696,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
+        "uid": "${datasource}"
       },
       "fieldConfig": {
         "defaults": {
@@ -752,7 +752,7 @@
         "h": 8,
         "w": 10,
         "x": 0,
-        "y": 12
+        "y": 11
       },
       "id": 31,
       "options": {
@@ -771,7 +771,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${datasource}"
           },
           "editorMode": "builder",
           "expr": "qumulo_cpu_temperature_celsius{instance=~\"$cluster\", node_id=~\"$nodes\"}",
@@ -782,7 +782,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${datasource}"
           },
           "editorMode": "builder",
           "expr": "min(qumulo_cpu_max_temperature_celsius{instance=~\"$cluster\", node_id=~\"$nodes\"})",
@@ -812,7 +812,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
+        "uid": "${datasource}"
       },
       "fieldConfig": {
         "defaults": {
@@ -868,7 +868,7 @@
         "h": 8,
         "w": 10,
         "x": 10,
-        "y": 12
+        "y": 11
       },
       "id": 34,
       "options": {
@@ -887,7 +887,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${datasource}"
           },
           "editorMode": "builder",
           "expr": "qumulo_fan_speed_rpm{instance=~\"$cluster\", node_id=~\"$nodes\"}",
@@ -902,7 +902,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
+        "uid": "${datasource}"
       },
       "description": "",
       "fieldConfig": {
@@ -934,7 +934,7 @@
         "h": 5,
         "w": 20,
         "x": 0,
-        "y": 20
+        "y": 19
       },
       "id": 33,
       "options": {
@@ -956,7 +956,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${datasource}"
           },
           "editorMode": "builder",
           "expr": "qumulo_memory_correctable_ecc_errors_total{instance=~\"$cluster\", node_id=~\"$nodes\"}",
@@ -972,7 +972,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
+        "uid": "${datasource}"
       },
       "description": "",
       "fieldConfig": {
@@ -1001,7 +1001,7 @@
         "h": 5,
         "w": 20,
         "x": 0,
-        "y": 25
+        "y": 24
       },
       "id": 35,
       "options": {
@@ -1023,7 +1023,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${datasource}"
           },
           "editorMode": "builder",
           "exemplar": false,
@@ -1044,14 +1044,14 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 30
+        "y": 29
       },
       "id": 59,
       "panels": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${datasource}"
           },
           "fieldConfig": {
             "defaults": {
@@ -1063,7 +1063,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   }
                 ]
               }
@@ -1074,7 +1075,7 @@
             "h": 7,
             "w": 20,
             "x": 0,
-            "y": 25
+            "y": 30
           },
           "id": 57,
           "options": {
@@ -1096,7 +1097,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "PBFA97CFB590B2093"
+                "uid": "${datasource}"
               },
               "editorMode": "builder",
               "exemplar": false,
@@ -1113,7 +1114,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${datasource}"
           },
           "fieldConfig": {
             "defaults": {
@@ -1155,7 +1156,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -1171,7 +1173,7 @@
             "h": 8,
             "w": 20,
             "x": 0,
-            "y": 32
+            "y": 37
           },
           "id": 24,
           "options": {
@@ -1190,7 +1192,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "PBFA97CFB590B2093"
+                "uid": "${datasource}"
               },
               "editorMode": "builder",
               "expr": "rate(qumulo_disk_operation_latency_seconds_sum{instance=~\"$cluster\", node_id=~\"$nodes\"}[$__rate_interval]) / rate(qumulo_disk_operation_latency_seconds_count{instance=~\"$cluster\"}[$__rate_interval])",
@@ -1205,7 +1207,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${datasource}"
           },
           "description": "",
           "fieldConfig": {
@@ -1221,7 +1223,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "red"
+                    "color": "red",
+                    "value": null
                   },
                   {
                     "color": "green",
@@ -1237,7 +1240,7 @@
             "h": 7,
             "w": 20,
             "x": 0,
-            "y": 40
+            "y": 45
           },
           "id": 63,
           "options": {
@@ -1257,10 +1260,10 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "PBFA97CFB590B2093"
+                "uid": "${datasource}"
               },
               "editorMode": "builder",
-              "expr": "qumulo_disk_endurance_percent{instance=~\"$cluster\", node_id=~\"$nodes\"}",
+              "expr": "qumulo_disk_endurance_percent{instance=~\"$cluster\"}",
               "legendFormat": "node {{node_id}} bay {{drive_bay}}",
               "range": true,
               "refId": "A"
@@ -1272,7 +1275,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${datasource}"
           },
           "description": "Uncorrectable media errors are failures to read or write to the physical disk that could not be resolved using error correction technology. These errors can lead to reallocating sectors. Large or rapidly increasing numbers of media errors may be an indicator that a drive will fail, especially on HDDs.",
           "fieldConfig": {
@@ -1315,7 +1318,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   }
                 ]
               }
@@ -1326,7 +1330,7 @@
             "h": 8,
             "w": 10,
             "x": 0,
-            "y": 47
+            "y": 52
           },
           "id": 68,
           "options": {
@@ -1345,7 +1349,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "PBFA97CFB590B2093"
+                "uid": "${datasource}"
               },
               "editorMode": "builder",
               "expr": "qumulo_disk_uncorrectable_media_errors_total{instance=~\"$cluster\", node_id=~\"$nodes\"}",
@@ -1360,7 +1364,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${datasource}"
           },
           "description": "Transport errors are failures to send or receive data between the drive controller and the disk. Large or rapidly increasing numbers of transport errors may be an indicator that the disk needs to be reseated, the transport cable needs to be replaced, the disk may needs to be replaced, or the drive controller needs to be replaced.",
           "fieldConfig": {
@@ -1403,7 +1407,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   }
                 ]
               }
@@ -1439,7 +1444,7 @@
             "h": 8,
             "w": 10,
             "x": 10,
-            "y": 47
+            "y": 52
           },
           "id": 69,
           "options": {
@@ -1458,7 +1463,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "PBFA97CFB590B2093"
+                "uid": "${datasource}"
               },
               "editorMode": "builder",
               "expr": "qumulo_disk_transport_errors_total{instance=~\"$cluster\", node_id=~\"$nodes\"}",
@@ -1480,14 +1485,14 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 31
+        "y": 30
       },
       "id": 61,
       "panels": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${datasource}"
           },
           "fieldConfig": {
             "defaults": {
@@ -1499,7 +1504,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "#EAB839",
@@ -1518,7 +1524,7 @@
             "h": 5,
             "w": 20,
             "x": 0,
-            "y": 57
+            "y": 61
           },
           "id": 45,
           "options": {
@@ -1540,7 +1546,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "PBFA97CFB590B2093"
+                "uid": "${datasource}"
               },
               "editorMode": "builder",
               "expr": "sum by(node_id, bond, role) (qumulo_network_interface_is_down{instance=~\"$cluster\", node_id=~\"$nodes\"})",
@@ -1555,7 +1561,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${datasource}"
           },
           "fieldConfig": {
             "defaults": {
@@ -1567,7 +1573,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -1582,7 +1589,7 @@
             "h": 5,
             "w": 20,
             "x": 0,
-            "y": 62
+            "y": 66
           },
           "id": 43,
           "options": {
@@ -1599,12 +1606,12 @@
             },
             "textMode": "name"
           },
-          "pluginVersion": "9.1.2",
+          "pluginVersion": "9.2.2",
           "targets": [
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "PBFA97CFB590B2093"
+                "uid": "${datasource}"
               },
               "editorMode": "builder",
               "expr": "qumulo_network_interface_is_down{instance=~\"$cluster\", node_id=~\"$nodes\"}",
@@ -1620,7 +1627,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${datasource}"
           },
           "fieldConfig": {
             "defaults": {
@@ -1633,7 +1640,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   }
                 ]
               },
@@ -1645,7 +1653,7 @@
             "h": 5,
             "w": 20,
             "x": 0,
-            "y": 67
+            "y": 71
           },
           "id": 47,
           "options": {
@@ -1662,12 +1670,12 @@
             },
             "textMode": "auto"
           },
-          "pluginVersion": "9.1.2",
+          "pluginVersion": "9.2.2",
           "targets": [
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "PBFA97CFB590B2093"
+                "uid": "${datasource}"
               },
               "editorMode": "builder",
               "expr": "qumulo_network_interface_link_speed_bits_per_second",
@@ -1682,7 +1690,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${datasource}"
           },
           "fieldConfig": {
             "defaults": {
@@ -1724,7 +1732,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   }
                 ]
               },
@@ -1736,7 +1745,7 @@
             "h": 8,
             "w": 7,
             "x": 0,
-            "y": 72
+            "y": 76
           },
           "id": 37,
           "options": {
@@ -1755,7 +1764,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "PBFA97CFB590B2093"
+                "uid": "${datasource}"
               },
               "editorMode": "builder",
               "expr": "rate(qumulo_network_interface_transmitted_bytes_total{instance=~\"$cluster\", node_id=~\"$nodes\"}[$__rate_interval])",
@@ -1766,7 +1775,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "PBFA97CFB590B2093"
+                "uid": "${datasource}"
               },
               "editorMode": "builder",
               "expr": "rate(qumulo_network_interface_received_bytes_total{instance=~\"$cluster\", node_id=~\"$nodes\"}[$__rate_interval])",
@@ -1782,7 +1791,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${datasource}"
           },
           "description": "",
           "fieldConfig": {
@@ -1825,7 +1834,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -1840,7 +1850,7 @@
             "h": 8,
             "w": 7,
             "x": 7,
-            "y": 72
+            "y": 76
           },
           "id": 41,
           "options": {
@@ -1859,7 +1869,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "PBFA97CFB590B2093"
+                "uid": "${datasource}"
               },
               "editorMode": "builder",
               "expr": "rate(qumulo_network_interface_transmitted_packets_total{instance=~\"$cluster\", node_id=~\"$nodes\"}[$__rate_interval])",
@@ -1870,7 +1880,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "PBFA97CFB590B2093"
+                "uid": "${datasource}"
               },
               "editorMode": "builder",
               "expr": "rate(qumulo_network_interface_received_packets_total{instance=~\"$cluster\", node_id=~\"$nodes\"}[$__rate_interval])",
@@ -1886,7 +1896,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "${datasource}"
           },
           "fieldConfig": {
             "defaults": {
@@ -1928,7 +1938,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -1943,7 +1954,7 @@
             "h": 8,
             "w": 6,
             "x": 14,
-            "y": 72
+            "y": 76
           },
           "id": 39,
           "options": {
@@ -1962,7 +1973,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "PBFA97CFB590B2093"
+                "uid": "${datasource}"
               },
               "editorMode": "builder",
               "expr": "qumulo_network_interface_transmit_errors_total{instance=~\"$cluster\", node_id=~\"$nodes\"}",
@@ -1974,7 +1985,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "PBFA97CFB590B2093"
+                "uid": "${datasource}"
               },
               "editorMode": "builder",
               "expr": "qumulo_network_interface_receive_errors_total{instance=~\"$cluster\", node_id=~\"$nodes\"}",
@@ -2002,12 +2013,31 @@
       {
         "current": {
           "selected": false,
+          "text": "Prometheus",
+          "value": "Prometheus"
+        },
+        "description": "The Prometheus instance to query OpenMetrics from",
+        "hide": 0,
+        "includeAll": false,
+        "multi": false,
+        "name": "datasource",
+        "options": [],
+        "query": "prometheus",
+        "queryValue": "",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "type": "datasource"
+      },
+      {
+        "current": {
+          "selected": false,
           "text": "",
           "value": ""
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "PBFA97CFB590B2093"
+          "uid": "${datasource}"
         },
         "definition": "qumulo_quorum_node_is_offline",
         "hide": 0,
@@ -2038,7 +2068,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "PBFA97CFB590B2093"
+          "uid": "${datasource}"
         },
         "definition": "qumulo_quorum_node_is_offline{instance=~\\\"$cluster\\\"}",
         "hide": 0,
@@ -2067,6 +2097,6 @@
   "timezone": "",
   "title": "Node Overview",
   "uid": "R66fOPnVz",
-  "version": 7,
+  "version": 8,
   "weekStart": ""
 }
