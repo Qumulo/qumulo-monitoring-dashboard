@@ -24,7 +24,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 1,
+  "id": 2,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -73,7 +73,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "9.1.2",
+      "pluginVersion": "9.2.2",
       "targets": [
         {
           "datasource": {
@@ -135,7 +135,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.1.2",
+      "pluginVersion": "9.2.2",
       "targets": [
         {
           "datasource": {
@@ -197,7 +197,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.1.2",
+      "pluginVersion": "9.2.2",
       "targets": [
         {
           "datasource": {
@@ -216,12 +216,260 @@
       "type": "stat"
     },
     {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "text",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 2,
+        "x": 0,
+        "y": 2
+      },
+      "id": 58,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^service_model$/",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.2.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "builder",
+          "expr": "qumulo_info{instance=~\"$cluster\"}",
+          "format": "table",
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Service Model",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "text",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 2,
+        "x": 2,
+        "y": 2
+      },
+      "id": 59,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^platform$/",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.2.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "builder",
+          "expr": "qumulo_info{instance=~\"$cluster\"}",
+          "format": "table",
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Platform",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "text",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 3,
+        "x": 4,
+        "y": 2
+      },
+      "id": 60,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^max_node_failures$/",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.2.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "builder",
+          "expr": "qumulo_info{instance=~\"$cluster\"}",
+          "format": "table",
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Max Node Failures",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "text",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 3,
+        "x": 7,
+        "y": 2
+      },
+      "id": 61,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^max_drive_failures$/",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.2.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "builder",
+          "expr": "qumulo_info{instance=~\"$cluster\"}",
+          "format": "table",
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Max Drive Failures",
+      "type": "stat"
+    },
+    {
       "collapsed": false,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 2
+        "y": 4
       },
       "id": 45,
       "panels": [],
@@ -301,7 +549,7 @@
         "h": 8,
         "w": 5,
         "x": 0,
-        "y": 3
+        "y": 5
       },
       "id": 14,
       "links": [],
@@ -423,7 +671,7 @@
         "h": 8,
         "w": 6,
         "x": 5,
-        "y": 3
+        "y": 5
       },
       "id": 22,
       "options": {
@@ -504,7 +752,7 @@
         "h": 8,
         "w": 4,
         "x": 11,
-        "y": 3
+        "y": 5
       },
       "id": 8,
       "options": {
@@ -602,7 +850,7 @@
         "h": 8,
         "w": 6,
         "x": 15,
-        "y": 3
+        "y": 5
       },
       "id": 51,
       "options": {
@@ -639,7 +887,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 11
+        "y": 13
       },
       "id": 43,
       "panels": [],
@@ -704,7 +952,7 @@
         "h": 8,
         "w": 7,
         "x": 0,
-        "y": 12
+        "y": 14
       },
       "id": 10,
       "options": {
@@ -793,7 +1041,7 @@
         "h": 8,
         "w": 7,
         "x": 7,
-        "y": 12
+        "y": 14
       },
       "id": 12,
       "options": {
@@ -894,7 +1142,7 @@
         "h": 8,
         "w": 7,
         "x": 14,
-        "y": 12
+        "y": 14
       },
       "id": 49,
       "options": {
@@ -982,7 +1230,7 @@
         "h": 8,
         "w": 7,
         "x": 0,
-        "y": 20
+        "y": 22
       },
       "id": 16,
       "options": {
@@ -1071,7 +1319,7 @@
         "h": 8,
         "w": 7,
         "x": 7,
-        "y": 20
+        "y": 22
       },
       "id": 6,
       "options": {
@@ -1161,7 +1409,7 @@
         "h": 8,
         "w": 7,
         "x": 14,
-        "y": 20
+        "y": 22
       },
       "id": 4,
       "options": {
@@ -1199,7 +1447,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 28
+        "y": 30
       },
       "id": 41,
       "panels": [],
@@ -1251,8 +1499,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               }
             ]
           },
@@ -1264,7 +1511,7 @@
         "h": 8,
         "w": 7,
         "x": 0,
-        "y": 29
+        "y": 31
       },
       "id": 39,
       "options": {
@@ -1341,8 +1588,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               }
             ]
           },
@@ -1354,7 +1600,7 @@
         "h": 8,
         "w": 7,
         "x": 7,
-        "y": 29
+        "y": 31
       },
       "id": 47,
       "options": {
@@ -1430,8 +1676,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               }
             ]
           },
@@ -1443,7 +1688,7 @@
         "h": 8,
         "w": 7,
         "x": 14,
-        "y": 29
+        "y": 31
       },
       "id": 37,
       "options": {
@@ -1519,8 +1764,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               }
             ]
           },
@@ -1532,7 +1776,7 @@
         "h": 8,
         "w": 7,
         "x": 0,
-        "y": 37
+        "y": 39
       },
       "id": 53,
       "options": {
@@ -1608,8 +1852,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               }
             ]
           },
@@ -1621,7 +1864,7 @@
         "h": 8,
         "w": 7,
         "x": 7,
-        "y": 37
+        "y": 39
       },
       "id": 55,
       "options": {
@@ -1697,8 +1940,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               }
             ]
           },
@@ -1710,7 +1952,7 @@
         "h": 8,
         "w": 7,
         "x": 14,
-        "y": 37
+        "y": 39
       },
       "id": 57,
       "options": {
@@ -1786,8 +2028,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               }
             ]
           },
@@ -1824,7 +2065,7 @@
         "h": 8,
         "w": 7,
         "x": 0,
-        "y": 45
+        "y": 47
       },
       "id": 26,
       "options": {
@@ -1901,8 +2142,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               }
             ]
           },
@@ -1914,7 +2154,7 @@
         "h": 8,
         "w": 7,
         "x": 7,
-        "y": 45
+        "y": 47
       },
       "id": 27,
       "options": {
@@ -1990,8 +2230,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               }
             ]
           },
@@ -2003,7 +2242,7 @@
         "h": 8,
         "w": 7,
         "x": 14,
-        "y": 45
+        "y": 47
       },
       "id": 29,
       "options": {
@@ -2109,6 +2348,6 @@
   "timezone": "",
   "title": "Cluster Overview",
   "uid": "isJoSTGVz",
-  "version": 2,
+  "version": 5,
   "weekStart": ""
 }
