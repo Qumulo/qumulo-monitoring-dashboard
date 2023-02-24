@@ -38,40 +38,58 @@
           "color": {
             "mode": "thresholds"
           },
+          "custom": {
+            "align": "auto",
+            "displayMode": "auto",
+            "inspect": false
+          },
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "text",
+                "color": "green",
                 "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
               }
             ]
           }
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "uuid"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 286
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
-        "h": 2,
-        "w": 3,
+        "h": 3,
+        "w": 12,
         "x": 0,
         "y": 0
       },
-      "id": 31,
+      "id": 63,
       "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
+        "footer": {
+          "fields": "",
+          "reducer": [
+            "sum"
           ],
-          "fields": "/^name$/",
-          "values": false
+          "show": false
         },
-        "text": {},
-        "textMode": "auto"
+        "showHeader": true,
+        "sortBy": []
       },
       "pluginVersion": "9.2.2",
       "targets": [
@@ -81,387 +99,54 @@
             "uid": "${datasource}"
           },
           "editorMode": "builder",
+          "exemplar": false,
           "expr": "qumulo_info{instance=~\"$cluster\"}",
           "format": "table",
+          "instant": true,
           "legendFormat": "__auto",
-          "range": true,
+          "range": false,
           "refId": "A"
         }
       ],
-      "title": "Cluster Name",
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${datasource}"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "text",
-                "value": null
-              }
-            ]
+      "title": "Cluster Info",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Time": true,
+              "Value": true,
+              "__name__": true,
+              "instance": true,
+              "job": true
+            },
+            "indexByName": {
+              "Time": 0,
+              "Value": 11,
+              "__name__": 1,
+              "instance": 2,
+              "job": 3,
+              "max_drive_failures": 9,
+              "max_node_failures": 10,
+              "name": 4,
+              "platform": 7,
+              "service_model": 8,
+              "uuid": 5,
+              "version": 6
+            },
+            "renameByName": {
+              "max_drive_failures": "Max Drive Failures",
+              "max_node_failures": "Max Node Failures",
+              "name": "Cluster Name",
+              "platform": "Platform",
+              "service_model": "Service Model",
+              "uuid": "Cluster UUID",
+              "version": "Software Version"
+            }
           }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 2,
-        "w": 2,
-        "x": 3,
-        "y": 0
-      },
-      "id": 35,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "/^version$/",
-          "values": false
-        },
-        "textMode": "auto"
-      },
-      "pluginVersion": "9.2.2",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${datasource}"
-          },
-          "editorMode": "builder",
-          "expr": "qumulo_info{instance=~\"$cluster\"}",
-          "format": "table",
-          "legendFormat": "__auto",
-          "range": true,
-          "refId": "A"
         }
       ],
-      "title": "Version",
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${datasource}"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "text",
-                "value": null
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 2,
-        "w": 4,
-        "x": 5,
-        "y": 0
-      },
-      "id": 33,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "/^uuid$/",
-          "values": false
-        },
-        "textMode": "auto"
-      },
-      "pluginVersion": "9.2.2",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${datasource}"
-          },
-          "editorMode": "builder",
-          "expr": "qumulo_info{instance=~\"$cluster\"}",
-          "format": "table",
-          "legendFormat": "__auto",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "UUID",
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${datasource}"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "text",
-                "value": null
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 2,
-        "w": 2,
-        "x": 0,
-        "y": 2
-      },
-      "id": 58,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "/^service_model$/",
-          "values": false
-        },
-        "textMode": "auto"
-      },
-      "pluginVersion": "9.2.2",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${datasource}"
-          },
-          "editorMode": "builder",
-          "expr": "qumulo_info{instance=~\"$cluster\"}",
-          "format": "table",
-          "legendFormat": "__auto",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "Service Model",
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${datasource}"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "text",
-                "value": null
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 2,
-        "w": 2,
-        "x": 2,
-        "y": 2
-      },
-      "id": 59,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "/^platform$/",
-          "values": false
-        },
-        "textMode": "auto"
-      },
-      "pluginVersion": "9.2.2",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${datasource}"
-          },
-          "editorMode": "builder",
-          "expr": "qumulo_info{instance=~\"$cluster\"}",
-          "format": "table",
-          "legendFormat": "__auto",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "Platform",
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${datasource}"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "text",
-                "value": null
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 2,
-        "w": 3,
-        "x": 4,
-        "y": 2
-      },
-      "id": 60,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "/^max_node_failures$/",
-          "values": false
-        },
-        "textMode": "auto"
-      },
-      "pluginVersion": "9.2.2",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${datasource}"
-          },
-          "editorMode": "builder",
-          "expr": "qumulo_info{instance=~\"$cluster\"}",
-          "format": "table",
-          "legendFormat": "__auto",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "Max Node Failures",
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${datasource}"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "text",
-                "value": null
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 2,
-        "w": 3,
-        "x": 7,
-        "y": 2
-      },
-      "id": 61,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "/^max_drive_failures$/",
-          "values": false
-        },
-        "textMode": "auto"
-      },
-      "pluginVersion": "9.2.2",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${datasource}"
-          },
-          "editorMode": "builder",
-          "expr": "qumulo_info{instance=~\"$cluster\"}",
-          "format": "table",
-          "legendFormat": "__auto",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "Max Drive Failures",
-      "type": "stat"
+      "type": "table"
     },
     {
       "collapsed": false,
@@ -469,7 +154,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 4
+        "y": 3
       },
       "id": 45,
       "panels": [],
@@ -549,7 +234,7 @@
         "h": 8,
         "w": 5,
         "x": 0,
-        "y": 5
+        "y": 4
       },
       "id": 14,
       "links": [],
@@ -671,7 +356,7 @@
         "h": 8,
         "w": 6,
         "x": 5,
-        "y": 5
+        "y": 4
       },
       "id": 22,
       "options": {
@@ -752,7 +437,7 @@
         "h": 8,
         "w": 4,
         "x": 11,
-        "y": 5
+        "y": 4
       },
       "id": 8,
       "options": {
@@ -850,7 +535,7 @@
         "h": 8,
         "w": 6,
         "x": 15,
-        "y": 5
+        "y": 4
       },
       "id": 51,
       "options": {
@@ -887,7 +572,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 13
+        "y": 12
       },
       "id": 43,
       "panels": [],
@@ -952,7 +637,7 @@
         "h": 8,
         "w": 7,
         "x": 0,
-        "y": 14
+        "y": 13
       },
       "id": 10,
       "options": {
@@ -1041,7 +726,7 @@
         "h": 8,
         "w": 7,
         "x": 7,
-        "y": 14
+        "y": 13
       },
       "id": 12,
       "options": {
@@ -1142,7 +827,7 @@
         "h": 8,
         "w": 7,
         "x": 14,
-        "y": 14
+        "y": 13
       },
       "id": 49,
       "options": {
@@ -1230,7 +915,7 @@
         "h": 8,
         "w": 7,
         "x": 0,
-        "y": 22
+        "y": 21
       },
       "id": 16,
       "options": {
@@ -1319,7 +1004,7 @@
         "h": 8,
         "w": 7,
         "x": 7,
-        "y": 22
+        "y": 21
       },
       "id": 6,
       "options": {
@@ -1409,7 +1094,7 @@
         "h": 8,
         "w": 7,
         "x": 14,
-        "y": 22
+        "y": 21
       },
       "id": 4,
       "options": {
@@ -1447,7 +1132,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 30
+        "y": 29
       },
       "id": 41,
       "panels": [],
@@ -1511,7 +1196,7 @@
         "h": 8,
         "w": 7,
         "x": 0,
-        "y": 31
+        "y": 30
       },
       "id": 39,
       "options": {
@@ -1600,7 +1285,7 @@
         "h": 8,
         "w": 7,
         "x": 7,
-        "y": 31
+        "y": 30
       },
       "id": 47,
       "options": {
@@ -1688,7 +1373,7 @@
         "h": 8,
         "w": 7,
         "x": 14,
-        "y": 31
+        "y": 30
       },
       "id": 37,
       "options": {
@@ -1776,7 +1461,7 @@
         "h": 8,
         "w": 7,
         "x": 0,
-        "y": 39
+        "y": 38
       },
       "id": 53,
       "options": {
@@ -1864,7 +1549,7 @@
         "h": 8,
         "w": 7,
         "x": 7,
-        "y": 39
+        "y": 38
       },
       "id": 55,
       "options": {
@@ -1952,7 +1637,7 @@
         "h": 8,
         "w": 7,
         "x": 14,
-        "y": 39
+        "y": 38
       },
       "id": 57,
       "options": {
@@ -2065,7 +1750,7 @@
         "h": 8,
         "w": 7,
         "x": 0,
-        "y": 47
+        "y": 46
       },
       "id": 26,
       "options": {
@@ -2154,7 +1839,7 @@
         "h": 8,
         "w": 7,
         "x": 7,
-        "y": 47
+        "y": 46
       },
       "id": 27,
       "options": {
@@ -2242,7 +1927,7 @@
         "h": 8,
         "w": 7,
         "x": 14,
-        "y": 47
+        "y": 46
       },
       "id": 29,
       "options": {
@@ -2366,6 +2051,6 @@
   "timezone": "",
   "title": "Cluster Overview",
   "uid": "isJoSTGVz",
-  "version": 3,
+  "version": 6,
   "weekStart": ""
 }
