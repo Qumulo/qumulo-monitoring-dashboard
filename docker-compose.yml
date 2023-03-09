@@ -12,6 +12,7 @@ services:
 
   prometheus:
     image: prom/prometheus:v2.39.1
+    user: root
     container_name: prometheus
     volumes:
       - ./prometheus:/etc/prometheus
@@ -34,10 +35,12 @@ services:
 
   grafana:
     image: grafana/grafana:9.2.2
+    user: root
     container_name: grafana
     volumes:
       - grafana_data:/var/lib/grafana
       - ./grafana/provisioning/:/etc/grafana/provisioning/
+      - ./grafana/config/grafana.ini:/etc/grafana/grafana.ini
     environment:
       - GF_SECURITY_ADMIN_USER=${ADMIN_USER:-admin}
       - GF_SECURITY_ADMIN_PASSWORD=${ADMIN_PASSWORD:-admin}
@@ -52,6 +55,7 @@ services:
 
   caddy:
     image: caddy:2.6.2
+    user: root
     container_name: caddy
     ports:
       - "3000:3000"
