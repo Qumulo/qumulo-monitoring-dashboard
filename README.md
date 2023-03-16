@@ -192,6 +192,9 @@ This section explains how to configure Grafana alerts to notify you through emai
 
    Grafana begins to use the contact point to deliver alerts.
 
+For SMTP email server configuration, you can add your email server info in the [`grafana.ini`](/grafana/grafana.ini#L22)
+SMTP configuration can be referenced here [Grafana.ini SMTP configuration](https://grafana.com/docs/grafana/latest/setup-grafana/configure-grafana/#smtp)
+
 <a id="updating-configuration"></a>
 ## Updating Your Qumulo Monitoring Dashboard Configuration
 This section explains how to update the configuration of the Qumulo Monitoring Dashboard for your system.
@@ -225,7 +228,10 @@ This section explains how to update the Grafana configuration for your system. T
 
 For information about working with Grafana dashboards, see [Create a dashboard](https://grafana.com/docs/grafana/latest/getting-started/build-first-dashboard/#create-a-dashboard) in the Grafana documentation.
 
-While Grafana runs, it doesn't apply alert configuration changes automatically. To reload the configuration, you must do one of the following:
+For information about working with Grafana configuration using the [`grafana.ini`](/grafana/grafana.ini#L22), see [Configuring Grafana](https://grafana.com/docs/grafana/latest/setup-grafana/configure-grafana/)) in the Grafana documentation.
+
+
+While Grafana runs, it doesn't apply alert or any other configuration changes automatically. To reload the configuration, you must do one of the following:
 
 * To stop and restart the container in which Grafana runs on your Docker host, run the following commands.
 
