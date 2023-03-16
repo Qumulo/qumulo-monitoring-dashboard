@@ -192,7 +192,7 @@ This section explains how to configure Grafana alerts to notify you through emai
 
    Grafana begins to use the contact point to deliver alerts.
 
-For SMTP email server configuration, you can add your email server info in the [`grafana.ini`](/grafana/grafana.ini#L663)
+For SMTP email server configuration, you can add your email server info in the [`grafana.ini`](/grafana/grafana.ini#L663).
 SMTP configuration can be referenced here [Configuring Grafana - SMTP configuration](https://grafana.com/docs/grafana/latest/setup-grafana/configure-grafana/#smtp) in the Grafana documentation.
 
 <a id="updating-configuration"></a>
