@@ -226,6 +226,8 @@ This section explains how to update the Grafana configuration for your system. T
 
 **⚠️ Important:** Because the functionality of certain vendors' disks degrades before reaching 0% endurance, by default, the **Disk endurance low** (`low_disk_endurance`) alert notifies when 20% endurance remains. For endurance information, check your disks' vendor documentation.
 
+**⚠️ Important:** Because of dependecies with caddy and container network components, it is not recommended to change the current port settings for accessing Grafana (port 3000). Please make backups of the [`grafana.ini`](/grafana/grafana.ini) before making any changes.
+
 For information about working with Grafana dashboards, see [Create a dashboard](https://grafana.com/docs/grafana/latest/getting-started/build-first-dashboard/#create-a-dashboard) in the Grafana documentation.
 
 For information about working with Grafana configuration using the [`grafana.ini`](/grafana/grafana.ini), see [Configuring Grafana](https://grafana.com/docs/grafana/latest/setup-grafana/configure-grafana/) in the Grafana documentation.
