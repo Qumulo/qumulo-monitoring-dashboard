@@ -100,7 +100,7 @@
           },
           "editorMode": "builder",
           "exemplar": false,
-          "expr": "qumulo_info{instance=~\"$cluster\"}",
+          "expr": "last_over_time(qumulo_info{instance=~\"$cluster\"}[24h])",
           "format": "table",
           "instant": true,
           "legendFormat": "__auto",
@@ -318,7 +318,7 @@
           },
           "editorMode": "builder",
           "exemplar": false,
-          "expr": "qumulo_node_info{instance=~\"$cluster\"}",
+          "expr": "last_over_time(qumulo_node_info{instance=~\"$cluster\"}[24h])",
           "format": "table",
           "instant": true,
           "legendFormat": "{{node_model}}",
@@ -331,7 +331,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "builder",
-          "expr": "qumulo_quorum_node_is_offline{instance=~\"$cluster\"}",
+          "expr": "last_over_time(qumulo_quorum_node_is_offline{instance=~\"$cluster\"}[24h])",
           "format": "table",
           "hide": false,
           "legendFormat": "__auto",
@@ -757,8 +757,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   }
                 ]
               }
@@ -850,8 +849,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -917,8 +915,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "red",
-                    "value": null
+                    "color": "red"
                   },
                   {
                     "color": "green",
@@ -1015,8 +1012,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   }
                 ]
               }
@@ -1104,8 +1100,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   }
                 ]
               }
@@ -1763,6 +1758,6 @@
   "timezone": "",
   "title": "Node Overview",
   "uid": "R66fOPnVz",
-  "version": 18,
+  "version": 2,
   "weekStart": ""
 }
