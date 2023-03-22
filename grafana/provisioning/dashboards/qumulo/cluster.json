@@ -100,7 +100,7 @@
           },
           "editorMode": "builder",
           "exemplar": false,
-          "expr": "qumulo_info{instance=~\"$cluster\"}",
+          "expr": "last_over_time(qumulo_info{instance=~\"$cluster\"}[24h])",
           "format": "table",
           "instant": true,
           "legendFormat": "__auto",
@@ -2051,6 +2051,6 @@
   "timezone": "",
   "title": "Cluster Overview",
   "uid": "isJoSTGVz",
-  "version": 6,
+  "version": 2,
   "weekStart": ""
 }
