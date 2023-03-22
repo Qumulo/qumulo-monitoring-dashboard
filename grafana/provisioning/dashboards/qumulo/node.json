@@ -1736,7 +1736,7 @@
           "type": "prometheus",
           "uid": "${datasource}"
         },
-        "definition": "qumulo_quorum_node_is_offline{instance=~\\\"$cluster\\\"}",
+        "definition": "qumulo_quorum_node_is_offline{instance=~\"$cluster\"}",
         "hide": 0,
         "includeAll": true,
         "label": "",
@@ -1744,7 +1744,7 @@
         "name": "nodes",
         "options": [],
         "query": {
-          "query": "qumulo_quorum_node_is_offline{instance=~\\\"$cluster\\\"}",
+          "query": "qumulo_quorum_node_is_offline{instance=~\"$cluster\"}",
           "refId": "StandardVariableQuery"
         },
         "refresh": 2,
