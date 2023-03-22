@@ -331,7 +331,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "builder",
-          "expr": "last_over_time(qumulo_quorum_node_is_offline{instance=~\"$cluster\"}[$__interval])",
+          "expr": "last_over_time(qumulo_quorum_node_is_offline{instance=~\"$cluster\"}[24h])",
           "format": "table",
           "hide": false,
           "legendFormat": "__auto",
