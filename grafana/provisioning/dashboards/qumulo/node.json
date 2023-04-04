@@ -24,7 +24,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 3,
+  "id": 2,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -68,6 +68,30 @@
               {
                 "id": "custom.width",
                 "value": 286
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Cluster Name"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 304
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Cluster UUID"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 482
               }
             ]
           }
@@ -292,8 +316,8 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 6,
-        "w": 20,
+        "h": 7,
+        "w": 13,
         "x": 0,
         "y": 3
       },
@@ -318,53 +342,39 @@
           },
           "editorMode": "builder",
           "exemplar": false,
-          "expr": "last_over_time(qumulo_node_info{instance=~\"$cluster\"}[24h])",
-          "format": "table",
-          "instant": true,
-          "legendFormat": "{{node_model}}",
-          "range": false,
-          "refId": "A"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${datasource}"
-          },
-          "editorMode": "builder",
           "expr": "last_over_time(qumulo_quorum_node_is_offline{instance=~\"$cluster\"}[24h])",
           "format": "table",
           "hide": false,
+          "instant": true,
           "legendFormat": "__auto",
-          "range": true,
+          "range": false,
           "refId": "B"
         }
       ],
       "title": "Node Info",
       "transformations": [
         {
-          "id": "joinByField",
-          "options": {
-            "byField": "node_id",
-            "mode": "inner"
-          }
-        },
-        {
           "id": "organize",
           "options": {
             "excludeByName": {
+              "Time": true,
               "Time 1": true,
               "Time 2": true,
               "Value #A": true,
               "Value #B": false,
+              "__name__": true,
               "__name__ 1": true,
               "__name__ 2": true,
+              "instance": true,
               "instance 1": true,
               "instance 2": true,
+              "job": true,
               "job 1": true,
               "job 2": true
             },
             "indexByName": {},
             "renameByName": {
+              "Value": "Status",
               "Value #B": "Status",
               "job 2": "",
               "node_id": "Node ID",
@@ -378,7 +388,7 @@
             "conversions": [
               {
                 "destinationType": "boolean",
-                "targetField": "Value #B"
+                "targetField": "Value"
               }
             ],
             "fields": {}
@@ -446,7 +456,7 @@
         "h": 8,
         "w": 10,
         "x": 0,
-        "y": 9
+        "y": 10
       },
       "id": 31,
       "options": {
@@ -562,7 +572,7 @@
         "h": 8,
         "w": 10,
         "x": 10,
-        "y": 9
+        "y": 10
       },
       "id": 34,
       "options": {
@@ -628,7 +638,7 @@
         "h": 5,
         "w": 20,
         "x": 0,
-        "y": 17
+        "y": 18
       },
       "id": 33,
       "options": {
@@ -695,7 +705,7 @@
         "h": 5,
         "w": 20,
         "x": 0,
-        "y": 22
+        "y": 23
       },
       "id": 35,
       "options": {
@@ -738,7 +748,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 27
+        "y": 28
       },
       "id": 59,
       "panels": [
@@ -1152,7 +1162,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 28
+        "y": 29
       },
       "id": 61,
       "panels": [
