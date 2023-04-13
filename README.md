@@ -35,7 +35,9 @@ Before you begin, ensure that you have the following minimum software versions:
 
 1. Log in to your Docker host.
 
-1. Use the `git` CLI to [clone this repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository).
+1. Use the `git` CLI to clone this repository.
+
+   For more information, see [Cloning a repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) in the GitHub documentation.
 
 1. Navigate to the `qumulo-monitoring-dashboard` directory.
 
