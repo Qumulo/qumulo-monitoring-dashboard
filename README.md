@@ -23,8 +23,9 @@ This section explains the initial configuration of the Qumulo Monitoring Dashboa
 
 <a id="prerequisites"></a>
 ### Prerequisites
-Before you begin, ensure that you have the following (or higher) software versions:
+Before you begin, ensure that you have the following minimum software versions:
 
+* [Git](https://docs.github.com/en/get-started/quickstart/set-up-git)
 * Docker Engine 1.13
 * Docker Compose 1.11
 * Qumulo Core 5.3.0
@@ -36,9 +37,7 @@ Before you begin, ensure that you have the following (or higher) software versio
 
 1. Use the `git` CLI to clone this repository.
 
-   ```bash
-   git clone git@github.com:Qumulo/qumulo-monitoring-dashboard.git
-   ```
+   For more information, see [Cloning a repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) in the GitHub documentation.
 
 1. Navigate to the `qumulo-monitoring-dashboard` directory.
 
