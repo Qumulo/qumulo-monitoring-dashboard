@@ -23,7 +23,7 @@ This section explains the initial configuration of the Qumulo Monitoring Dashboa
 
 <a id="prerequisites"></a>
 ### Prerequisites
-Before you begin, ensure that you have the following (or higher) software versions:
+Before you begin, ensure that you have the following minimum software versions:
 
 * [Git](https://docs.github.com/en/get-started/quickstart/set-up-git)
 * Docker Engine 1.13
