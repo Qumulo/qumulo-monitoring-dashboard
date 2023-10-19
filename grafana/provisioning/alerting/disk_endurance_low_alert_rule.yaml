@@ -21,7 +21,7 @@ groups:
             model:
               editorMode: builder
               exemplar: false
-              expr: qumulo_disk_endurance_percent
+              expr: last_over_time(qumulo_disk_endurance_percent[24h])
               hide: false
               instant: true
               intervalMs: 1000
@@ -50,7 +50,7 @@ groups:
         execErrState: Error
         for: 5m
         annotations:
-          description: >-    
+          description: >-
             Disk {{ $labels.disk_type }} in drive bay {{ $labels.drive_bay }} on node
             {{ $labels.node_id }} has less than 20% disk endurance remaining.
             Consider replacing this disk.
