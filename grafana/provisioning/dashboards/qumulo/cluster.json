@@ -2025,14 +2025,14 @@
           "type": "prometheus",
           "uid": "PBFA97CFB590B2093"
         },
-        "definition": "qumulo_quorum_node_is_offline",
+        "definition": "qumulo_fs_capacity_bytes",
         "hide": 0,
         "includeAll": false,
         "multi": false,
         "name": "cluster",
         "options": [],
         "query": {
-          "query": "qumulo_quorum_node_is_offline",
+          "query": "qumulo_fs_capacity_bytes",
           "refId": "StandardVariableQuery"
         },
         "refresh": 1,
