@@ -167,6 +167,8 @@ This section explains how to verify that Grafana can query Prometheus and displa
 
    Metrics for your cluster begin to populate graphs.
 
+   **ℹ️ Note:** The **Cluster Info** and **Node Info** panels may take up to 24 hours to fully populate after initial setup.
+
 <a id="configure-grafana-alerts"></a>
 ### Step 7: Configure Grafana Alert Notifications
 This section explains how to configure Grafana alerts to notify you through email, Slack, or an alerting tool.
